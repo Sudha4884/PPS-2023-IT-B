@@ -1,0 +1,17 @@
+// Finding if a number is perfect
+#include<stdio.h>
+void main(){
+    int num,sum=0;
+    printf("Enter a number: ");
+    scanf("%d", &num);
+    for(int i=1; i<=num; i++){
+        if(num % i == 0){
+        sum = sum + i;
+        }
+    }
+    if(sum % 2 == 0){
+        printf("The number is perfect");
+    }else{
+        printf("The number is not perfect");
+    }
+}
