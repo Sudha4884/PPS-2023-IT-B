@@ -9,7 +9,20 @@ int main(){
     printf("enter the operator: ");
     scanf(" %c", &ch);
 
-    if(ch == '+'){
+    switch(ch){
+        case '+': printf("sum is %d", a+b);
+        break;
+        case '-': printf("differnce is %d", a-b);
+        break;
+        case '*': printf("product is %d", a*b);
+        break;
+        case '/': printf("quotient is %d", a/b);
+        break;
+        case '%': printf("remainder is %d", a%b);
+        break;
+        default: printf("Can't perform the operation");
+    }
+    /*if(ch == '+'){
         int sum = a+b;
         printf("The sum is %d", sum);
     }
@@ -31,5 +44,5 @@ int main(){
     }
     else{
         printf("Can't perform the operation");
-    }
+    }*/
 }
