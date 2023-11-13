@@ -1,4 +1,4 @@
-//Array of struct
+//structure variable is a pointer
 #include<stdio.h>
 struct student 
 {
