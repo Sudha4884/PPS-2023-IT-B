@@ -7,12 +7,12 @@ struct complex{
 int main(){
 	int n;
 	printf("Enter the number of complex numbers \n");
-	scanf("%d",&n");
-	for(int i=0; i<15; i++){
+	scanf("%d",&n);
+	for(int i=0; i<n; i++){
 		printf("Enter real and imaginary part \n");
 		scanf("%d %d", &c[i].real, &c[i].imaginary);
 	}
-	for(int i=0; i<15; i++){
+	for(int i=0; i<n; i++){
 		printf("Complex number is %d + %di \n", c[i].real, c[i].imaginary);
 	}
 }
