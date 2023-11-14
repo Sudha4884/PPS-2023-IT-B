@@ -1,3 +1,5 @@
-// Reading and printing student details with help of pointer
+//Reading and printing students detaitls 
+//structure
+//pointer
 #include<stdio.h>
 struct 
