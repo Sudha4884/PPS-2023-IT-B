@@ -4,6 +4,6 @@
 int main(){
 	int x,n;
 	x=2; n=5;
-printf("%d",pow(x,n));
+ 	printf("%d",pow(x,n));
 	
 }
