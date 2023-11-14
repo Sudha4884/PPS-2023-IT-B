@@ -5,11 +5,14 @@ struct complex{
 	int imaginary;
 }c[15];
 int main(){
+	int n;
+	printf("Enter the number of complex numbers \n");
+	scanf("%d",&n");
 	for(int i=0; i<15; i++){
-		printf("Enter real and imaginary part");
+		printf("Enter real and imaginary part \n");
 		scanf("%d %d", &c[i].real, &c[i].imaginary);
 	}
 	for(int i=0; i<15; i++){
-		printf("Complex number is %d + %di", c[i].real, c[i].imaginary);
+		printf("Complex number is %d + %di \n", c[i].real, c[i].imaginary);
 	}
 }
