@@ -1,14 +1,18 @@
-//To find the reverse of a number
+//To read and print complex numbers using array of structures
 #include<stdio.h>
+struct complex{
+	int real;
+	int imaginary;
+}c[15];
 int main(){
-    int num,rem;
-    printf("enter a number: ");
-    scanf("%d", &num);
-
-    printf("The reverse of the number of: ");
-    while(num != 0){
-        rem = num % 10;
-        printf("%d, ",rem);
-        num = num / 10;
-    }
+	int n;
+	printf("Enter the number of complex numbers \n");
+	scanf("%d",&n");
+	for(int i=0; i<15; i++){
+		printf("Enter real and imaginary part \n");
+		scanf("%d %d", &c[i].real, &c[i].imaginary);
+	}
+	for(int i=0; i<15; i++){
+		printf("Complex number is %d + %di \n", c[i].real, c[i].imaginary);
+	}
 }
