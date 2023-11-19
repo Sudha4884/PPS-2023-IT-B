@@ -1,11 +1,20 @@
-//TO find the roots of quadratic form
+//To find the roots of quadratic form
 #include<stdio.h>
+#include<math.h>
+
 void main(){
-	int a,b,c,x1,x2;
+	int a,b,c,x1,x2,D,rD;
 	printf("enter the coefficients of quadratic form\n ");
 	scanf("%d %d %d",&a,&b,&c);
-	x1=((b*b)-4*a*c)/2*a ;
-	x2=((b*b)+4*a*c)/2*a ;
-	printf("The roots are\n x1 = %d \n x2 = %d",x1,x2);
-	
+	D = (b*b)- (4*a*c);
+	rD = sqrt(D);
+	if(rD >= 0){
+		x1 = (-b + rD )/ (2*a);
+		x2 = (-b - rD )/ (2*a);
+		printf("\n x1 = %d \n x2 = %d",x1,x2);
+	}
+	if(rD < 0){
+		printf("x1 = -%d + √%d\n \t %d \n", b,D,2*a);
+		printf("x2 = -%d - √%d\n \t %d \n", b,D,2*a);
+	}
 }
