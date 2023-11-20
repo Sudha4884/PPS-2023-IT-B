@@ -6,7 +6,7 @@
 int main(){
     int num;
     int count = 0;
-    int exitstatus = 0;
+
    
  
     printf("enter a 3 digit number \n");
