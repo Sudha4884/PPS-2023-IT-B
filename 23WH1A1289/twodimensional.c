@@ -53,19 +53,7 @@ int main() {
         }
         printf("\n");
     }
-    // Multiplication of arrays and printing the result
-    printf("Product of Arrays:\n");
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols1; j++) {
-            result[i][j] = 0;
-            for (int k = 0; k < cols; k++) {
-                result[i][j] += arr[i][k] * arr1[k][j];
-            }
-            printf("%d\t", result[i][j]);
-        }
-        printf("\n");
-    }
-
+ 
 
     return 0;
 }
