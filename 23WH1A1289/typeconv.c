@@ -12,12 +12,10 @@ int main() {
     printf("Enter a floating-point number: ");
     scanf("%f", &floatNumber);
 
-    // implicit type conversion
     float result = integerNumber + floatNumber;
-    printf("\nAutomatic Type Conversion:\n");
+    printf("\nType Conversion:\n");
     printf("Result after adding: %f\n", result);
 
-    // explicit Type casting
     int result1 = (int)floatNumber * integerNumber;
     printf("\nType Casting:\n");
     printf("Result after multiplication (with casting): %d\n", result1);
