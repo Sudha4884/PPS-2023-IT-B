@@ -10,7 +10,7 @@ int main() {
     int count = 0;
     strcpy(s1, s);
 
-    // Reverse the string s1
+  
     strrev(s1);
 
     if (strlen(s) == strlen(s1)) {
