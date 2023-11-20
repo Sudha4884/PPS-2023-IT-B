@@ -16,4 +16,5 @@ void main(){
             }
         }
     }
+    printf("%d" , count) ;
 }
