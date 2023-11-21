@@ -1,5 +1,5 @@
 //add the last and first digit of a number
-/*#include<stdio.h>
+#include<stdio.h>
 int main()
 {
     int num,l,f,sum;
@@ -14,7 +14,7 @@ int main()
     sum = l + f;
     printf("%d",sum);
 
-}*/
+}
 
 /*#include<stdio.h>
 #include<math.h>
