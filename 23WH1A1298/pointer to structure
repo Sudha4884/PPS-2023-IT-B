@@ -1,0 +1,14 @@
+#include<stdio.h>
+struct complex
+{
+   int real;
+   int imag;
+};
+void main()
+{struct complex c,*cptr;
+ cptr=&c;
+ printf("give real and imag");
+ scanf("%d%d",&cptr->real,&cptr->imag);
+ printf("the complex number is ");
+ printf("%d+(%d)i",cptr->real,cptr->imag);
+}
