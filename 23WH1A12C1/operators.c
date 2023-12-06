@@ -1,18 +1,24 @@
-// Working of arithmetic operators
-#include <stdio.h>
-int main()
+#include<stdio.h>
+void main()
 {
-    int a=2,b=3,c;
-    c = a+b;
-    printf("a+b = %d \n",c);
-    c = a-b;
-    printf("a-b = %d \n",c);
-    c = a*b;
-    printf("a*b = %d \n",c);
-    c = a/b;
-    printf("a/b = %d \n",c);
-    c = a%b;
-    printf("a % b = %d \n",c);
-    
-    return 0;
-}
+ int c,a,b;
+ char op;
+ printf("enter a b values: ");
+ scanf("%d %d",&a,&b);
+ printf("enter operator: ");
+ scanf("%c",&op);
+ switch(op)
+ {
+ case '+':
+          printf("%d",a+b);
+          break;
+ case '-': 
+          printf("%d",a-b);
+          break;
+ case '%': 
+          printf("%d",a%b);
+          break;
+ default : printf("invalid input");
+          break;
+ } 
+}           
