@@ -2,6 +2,7 @@
 int printArray(int [],int);
 int readArray(int [],int);
 int addArray(int [],int [],int);
+int compareArray(int [],int);
 void main()
 {
     int n,A[10],B[10];
@@ -14,6 +15,8 @@ void main()
     readArray(B,n);
     printArray(B,n);
     addArray(A,B,n);
+    compareArray(A,n);
+    compareArray(B,n);
 }
 
 int readArray(int X[],int n)
@@ -42,5 +45,25 @@ int addArray(int X[],int Y[],int n)
     {
          sum += X[i] + Y[i];
     }
-    printf("The sum of two arrays is %d ",sum);
+    printf("The sum of two arrays is %d \n",sum);
+}
+
+int compareArray(int X[],int n)
+{
+    int i,max = 0;
+    int min =0;
+    for (i =0; i<n;i ++);
+    {
+        if(max < X[i])
+        {
+            max = X[i];
+        }
+        else
+        {
+            min = X[i];
+        }
+
+    }
+    printf("The maximum and minimum value of array is %d %d\n",max,min);
+
 }
