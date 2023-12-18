@@ -1,23 +1,28 @@
-#include <stdio.h>
+#include<stdio.h>
+int fib(int n);
+int main()
+{
+int  i, n;
+printf("enter n: ");
+scanf("%d",&n);
+printf("The fibonacci elements: ");
+for(i=0; i<=n; i++)
+printf("%d ",fib(i));
+return 0;
+}
 
-int main() {
-    int n, first = 0, second = 1, next, c;
-
-    printf("Enter the number of terms: ");
-    scanf("%d", &n);
-
-    printf("Fibonacci Series:\n");
-
-    for (c = 0; c < n; c++) {
-        if (c <= 1)
-            next = c;
-        else {
-            next = first + second;
-            first = second;
-            second = next;
-        }
-        printf("%d ", next);
-    }
-
-    return 0;
+int fib(int n)
+{
+if(n==0)
+  {
+   return 0;
+  }
+if(n==1)
+  {
+   return 1;
+  }
+int fibNm1 = fib(n-1);
+int fibNm2= fib (n-2);
+int fibN = fibNm1+fibNm2;
+return fibN;
 }
