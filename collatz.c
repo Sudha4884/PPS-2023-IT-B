@@ -1,31 +1,20 @@
 #include<stdio.h>
-void collatz(int);
-void main()
+int collatz(int n)
+{
+printf("%d\n",n);
+if(n==1)
+return 1;
+else if(n%2==0)
+return collatz(n/2);
+else
+ return collatz(3*n+1);
+}
+int main()
 {
 int num;
-printf("\nEnter a number");
-scanf("%d",&num);
-printf("\n %d \n",num);
+printf("enter a positive integer:");
+scanf("%d \n",&num);
+printf("colatz sequence:\n");
 collatz(num);
-}
-void collatz(int n)
-{
-int count = 1;
-while(n!=1)
-{
-if(n%2 == 0)
-{
-n=n/2;
-count++;
-}
-else
-{
-n= 3*n+1;
-count++;
-}
-
-printf("\n %d",n);
-printf("\n");
-}
-printf("\n count =%d",count);
+return 0;
 }
