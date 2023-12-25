@@ -1,0 +1,11 @@
+// Reverse of given three characters and their ASCII values 
+
+#include<stdio.h>
+void main()
+{
+char a, b,c;
+printf("Enter three characters");
+scanf("%c %c %c",&a,&b,&c);
+printf("%c\n%c\n%c\n",c,b,a);
+printf("ASCII values of the three characters is \n%d\n%d\n%d",a,b,c);
+}
