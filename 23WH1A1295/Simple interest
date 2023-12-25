@@ -1,0 +1,16 @@
+#include<stdio.h>
+
+void main() 
+{
+  float SI, P, R, T;
+  printf("principle amount borrowed");
+  scanf("%f",&P);
+  printf("rate of interest per annum");
+  scanf("%f",&R);
+  printf("number of years");
+  scanf("%f",&T);
+  
+  SI=(P*R*T) /100;
+  
+  printf("simple interest is%f",SI);
+  }
