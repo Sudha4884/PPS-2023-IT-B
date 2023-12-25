@@ -1,0 +1,24 @@
+#include<stdio.h>
+int max(int a, int b, int c, int d) ;
+int main() 
+{
+int a, b, c, d, result;
+printf("enter nums");
+scanf("%d %d %d %d",&a,&b,&c,&d);
+printf("%d\n%d\n%d\n%d",a,b,c,d);
+result=max(a, b, c, d) ;
+printf("\nmaximum number is%d",result);
+return result;
+}
+int max(int a, int b, int c, int d) 
+{
+int result;
+if(a>=b && a>=c && a>=d) 
+result== a;
+else if(b>=a && b>=c && b>=d) 
+result == b;
+else if(c>=a && c>=b && c>=d) 
+result == c;
+else
+result == d;
+}
