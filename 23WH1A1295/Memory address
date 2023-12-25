@@ -1,0 +1,9 @@
+//To find memory address of character. 
+#include<stdio.h>
+void main() 
+{
+ char a;
+ printf("enter a variable");
+ scanf("%c",&a);
+ printf("memory address of a given variable is%p");
+ }
