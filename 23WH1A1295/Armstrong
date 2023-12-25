@@ -1,0 +1,21 @@
+//To check given number is Armstrong or not. 
+#include<stdio.h>
+void main()
+{
+int n,sum=0,original,remainder;
+printf("Enter a number");
+scanf("%d",&n);
+original=n;
+while(n>0)
+{
+remainder=n%10;
+sum+=remainder*remainder*remainder;
+n/=10;
+}
+{
+if(original==sum)
+printf("The number is an Armstrong");
+else
+printf("The number  is not an Armstrong");
+}
+}
