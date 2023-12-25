@@ -1,0 +1,13 @@
+# include<stdio.h>
+int main() 
+{ 
+/* size of different data types*/
+ int integer_type;
+ char char_type;
+ float float_type;
+ double double_type;
+ printf("size of int in bytes:%d",sizeof (integer_type) );
+ printf("\nsize of char in bytes:%d",sizeof (char_type)) ;
+ printf("\nsize of float in bytes:%d",sizeof (float_type) );
+ printf("\nsize of double in bytes:%d",sizeof (double_type) );
+ }
