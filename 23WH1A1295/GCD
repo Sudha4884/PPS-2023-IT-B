@@ -1,0 +1,14 @@
+//To find greatest common divisor for a given two numbers. 
+#include<stdio.h>
+void main () 
+{
+int a, b, I, gcd;
+printf("Enter a number : ");
+scanf("%d",&a);
+printf("Enter a number : ");
+scanf("%d",&b);
+for(I=1;I<=b;I++) 
+if(a%I==0 && b%I==0) 
+gcd=I;
+printf("Greatest common divisor = %d",gcd);
+}
