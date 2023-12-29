@@ -1,3 +1,4 @@
+//Write a program to find compound interest. 
 #include<stdio.h>
 void main() 
 {
