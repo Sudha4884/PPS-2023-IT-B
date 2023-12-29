@@ -1,0 +1,12 @@
+//To find power for a numbe(number and power is given by user)
+#include<stdio.h>
+void main() 
+{
+int x, n, power;
+printf("Enter a number : ");
+scanf("%d", &x) ;
+printf("Enter power : ");
+scanf("%d",&n);
+power = pow(x, n) ;
+printf("%d^%d = %d",x,n,power);
+}
