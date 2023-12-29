@@ -1,0 +1,18 @@
+#include<stdio.h>
+void main() 
+{
+int p, CI, r, n, t, A;
+printf("Enter Principle amount : ");
+scanf ("%d", &p) ;
+printf("\nEnter rate of interest : ");
+scanf ("%d", &r) ;
+printf("\nEnter number of time periods : ");
+scanf ("%d", &t) ;
+printf("\nEnter number of times interest applied per time period : ");
+scanf ("%d", &n) ;
+A=p*((pow((1+(0.01*r)/n),n*t)));
+printf("\nAmount = %d",A);
+CI=A-p;
+printf ("\nCompound Interest = %d", CI) ;
+
+}
