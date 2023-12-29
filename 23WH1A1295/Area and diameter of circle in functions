@@ -1,0 +1,23 @@
+#include<stdio.h>
+int circleDiameter(int r) ;
+int circleArea(int r) ;
+
+int main()
+{
+int r;
+printf("Enter radius of circle : ");
+scanf("%d",&r);
+printf("\nDiameter of circle = %d",circleDiameter(r));
+printf("\nArea of circle = %d",circleArea(r));
+}
+int circleDiameter(int r) 
+{
+
+return 2*r;
+}
+int circleArea(int r) 
+{
+
+float π=3.14;
+return π*r*r;
+}
