@@ -4,9 +4,9 @@ int cube(int n) ;
 int main()
 {
 int n;
-printf("enter n");
+printf("Enter number");
 scanf("%d",&n);
-printf("%d", cube(n)) ;
+printf("Cube of number = %d", cube(n)) ;
 }
 int cube (int n) 
 {
