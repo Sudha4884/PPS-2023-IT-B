@@ -1,0 +1,14 @@
+//Write a program to find a cube of number using functions. 
+#include<stdio.h>
+int cube(int n) ;
+int main()
+{
+int n;
+printf("enter n");
+scanf("%d",&n);
+printf("%d", cube(n)) ;
+}
+int cube (int n) 
+{
+return n*n*n;
+}
