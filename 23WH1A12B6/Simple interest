@@ -1,0 +1,10 @@
+#include  <stdio.h>
+int main ()
+{
+    int t,r;
+    float p,si;
+    printf ("enter p,t and r");
+    scanf ("%f%d%d",&p,&t,&r);
+    si=(p*t*r)/100;
+    printf  ("%.2f is simple interest",si);
+}
