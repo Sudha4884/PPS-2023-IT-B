@@ -1,0 +1,48 @@
+#include<stdio.h>
+int readArray(int []);
+void printArray(int [],int);
+int binary(int [],int);
+void main()
+{
+int A[100],n,res;
+n=readArray(A);
+printf("\n *********** \n");
+printArray(A,n);
+printf(" \n ************* \n");
+res = binary(A,n);
+if(res == -1)
+        printf("\n Unsucessful");
+else
+printf("\n Successful at %d index",res);
+}
+int readArray(int x[])
+{
+int n;
+scanf("%d",&n);
+printf("\n Enter %d no of elements",n);
+for(int i = 0; i<n;i++)
+        scanf("%d",&x[i]);
+return n;
+}
+void printArray(int x[],int n)
+{
+for(int i=0;i<n;i++)
+printf("%5d",x[i]);
+}
+int binary(int x[],int n)
+{
+int k,mid,low = 0,high = n-1;
+printf("\n Enter key element");
+scanf("%d",&k);
+while(low<=high)
+{ 
+mid = (low+high)/2;
+if(k==x[mid])
+	return mid;
+else if(k<x[mid])
+	high = mid - 1;
+else
+	low = mid + 1;
+}
+return -1;
+}         

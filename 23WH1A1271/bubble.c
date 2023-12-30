@@ -1,0 +1,42 @@
+#include<stdio.h>
+int readArray(int []);
+void printArray(int [],int);
+void swap(int*,int*);
+void bubble(int [],int);
+void main()
+{
+int A[100],n,res;
+n=readArray(A);
+printf("\n Before sorting \n");
+printArray(A,n);
+bubble(A,n);
+printf("\n After sorting \n");
+ printArray(A,n);
+}
+int readArray(int x[])
+{
+int n;
+scanf("%d",&n);
+printf("\n Enter %d no of elements ",n);
+for(int i = 0; i<n;i++)
+        scanf("%d",&x[i]);
+return n;
+}
+void printArray(int x[],int n)
+{
+for(int i=0;i<n;i++)
+printf("%5d",x[i]);
+}
+void swap(int *x,int*y)
+{
+int t=*x;
+*x=*y;
+*y=t;
+}
+void bubble(int x[],int n)
+{
+for(int i =0; i<n-1;i++)
+    for(int j=0;j<n-i-1;j++)
+        if(x[j]>x[j+1])
+           swap(&x[j],&x[j+1]);
+}
