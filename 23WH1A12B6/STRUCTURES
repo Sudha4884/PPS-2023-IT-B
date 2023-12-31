@@ -1,0 +1,14 @@
+#include <stdio.h>
+struct employee
+{
+int id;
+char name[10];
+float salary;
+char post [10];
+} E1,E2,E3;
+int main(){
+struct employee E1 = {55,"nandhu",18000,"head"};
+struct employee E2 = {37,"chandhu",85000,"HR"};
+scanf("%d%s%f%s",&E3.id,E3.name,&E3.salary,E3.post);
+printf("ID NAME SALARY DESIGNATION\n %5d %5s %5f %5s\n %5d %5s %5f %5s\n %5d %5s %5f %5s",E1.id,E1.name,E1.salary,E1.post,E2.id,E2.name,E2.salary,E2.post,E3.id,E3.name,E3.salary,E3.post);
+}
