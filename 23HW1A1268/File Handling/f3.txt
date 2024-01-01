@@ -1,0 +1,4 @@
+Hey. I what to copy one file to another by replacing lower char to upper char.
+Let's find out if I can do this!?ÿ
+HEY. I WHAT TO COPY ONE FILE TO ANOTHER BY REPLACING LOWER CHAR TO UPPER CHAR.
+LET'S FIND OUT IF I CAN DO THIS!?Ÿÿ

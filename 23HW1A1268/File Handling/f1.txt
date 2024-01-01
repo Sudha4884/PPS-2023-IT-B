@@ -1,0 +1,2 @@
+Hey. I what to copy one file to another by replacing lower char to upper char.
+Let's find out if I can do this!?
