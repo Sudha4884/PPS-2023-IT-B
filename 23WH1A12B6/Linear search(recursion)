@@ -1,0 +1,43 @@
+include <stdio.h>
+
+int linearSearch(int arr[], int key, int size, int index) {
+    if (index >= size) {
+        return -1; // Key element not found
+    }
+    if (arr[index] == key) {
+        return index; // Key element found at current index
+    }
+    return linearSearch(arr, key, size, index + 1); // Recursively search in the next index
+}
+
+int main() {
+    int size, key, result;
+    
+    printf("Enter the size of the array: ");
+    scanf("%d", &size);
+    
+    int arr[size];
+    
+    printf("Enter the elements of the array:\n");
+    for (int i = 0; i < size; i++) {
+        scanf("%d", &arr[i]);
+    }
+    
+    printf("Enter the key element to search: ");
+    scanf("%d", &key);
+    
+    result = linearSearch(arr, key, size, 0);
+    
+    if (result == -1) {
+        printf("Key element not found in the array.\n");
+    } else {
+        printf("Key element found at index %d.\n", result);
+    }
+    
+    return 0;
+}
+
+
+In this program, the `linearSearch` function is used to recursively search for the key element in the array. It takes the array, key element, size of the array, and the current index as parameters. If the key element is found at the current index, the function returns the index. If the end of the array is reached without finding the key element, the function returns -1. The `main` function prompts the user to enter the size of the array, the elements of the array, and the key element to search. It then calls the `linearSearch` function and displays the result accordingly.
+
+Type a message
