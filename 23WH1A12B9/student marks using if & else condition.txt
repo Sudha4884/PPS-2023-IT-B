@@ -1,0 +1,26 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+    int m;
+    scanf("%d",&m);
+    if(m >= 91)
+    printf("s");
+    else if(81 <= m && m <= 90)
+    printf("A+");
+    else if(71 <= m && m <= 80)
+    printf("A");
+    else if(61 <= m && m <= 70)
+    printf("B+");
+    else if(51 <= m && m <= 60)
+    printf("B");
+    else if(41 <= m && m <= 50)
+    printf("C");
+    else if(28 <= m && m <= 40)
+    printf("P");
+    else
+    printf("F");
+    return 0;
+
+    return 0;
+}
