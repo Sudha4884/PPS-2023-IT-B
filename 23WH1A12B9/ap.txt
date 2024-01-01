@@ -1,0 +1,8 @@
+def ap(a, d, n):
+    series = [a + i * d for i in range(n)]
+    return series
+a = 2
+d = 3
+terms = 5
+result = ap(a, d, terms)
+print("AP series:", result)
