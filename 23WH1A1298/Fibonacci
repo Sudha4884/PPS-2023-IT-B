@@ -1,0 +1,18 @@
+//To print the fibonacci series
+#include<stdio.h>
+int main(){
+    int n,i,t,t1,t2;
+    printf("Enter number of terms: ");
+    scanf("%d", &n);
+    t1=0;t2=1;
+    t = t1 + t2;
+    
+    printf("The fibonacci series is: ");
+    printf("\n %d \n %d \n", t1,t2);
+    for(i=1; i<=n; i++){
+        printf("%d \n", t);
+        t1 = t2;
+        t2 = t;
+        t = t1 + t2;
+    }
+}
