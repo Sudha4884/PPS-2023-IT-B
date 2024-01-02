@@ -1,0 +1,24 @@
+// Performing operations on the given input of operater //
+#include<stdio.h>
+
+int main(){
+    int a,b;
+    char ch;
+    printf("enter two numbmers to perform operation: ");
+    scanf("%d %d",&a,&b);
+    printf("enter the operator: ");
+    scanf(" %c", &ch);
+
+    switch(ch){
+        case '+': printf("sum is %d", a+b);
+        break;
+        case '-': printf("differnce is %d", a-b);
+        break;
+        case '*': printf("product is %d", a*b);
+        break;
+        case '/': printf("quotient is %d", a/b);
+        break;
+        case '%': printf("remainder is %d", a%b);
+        break;
+        default: printf("Can't perform the operation");
+    }
