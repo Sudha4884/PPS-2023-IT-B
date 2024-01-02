@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int main()
+{
+	int Size, i;
+
+	printf("Please Enter the Array size = ");
+	scanf("%d", &Size);
+
+	int a[Size];
+
+	int *ptr = a;
+
+	printf("Enter the Array Elements = ");
+	for (i = 0; i < Size; i++)
+	{
+		scanf("%d", ptr + i);
+	}
+
+	printf("Printing Array Elements using Pointer\n");
+	for (i = 0; i < Size; i++)
+	{
+		printf("%d  ", *(ptr + i));
+	}
+	printf("\n");
+}
