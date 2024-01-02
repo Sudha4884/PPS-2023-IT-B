@@ -1,0 +1,13 @@
+#include <stdio.h>  
+#include<stdlib.h>
+int main() {         
+FILE *fp = fopen("Firstfile.txt", "r");       
+    if (fp == NULL) {        
+         printf("Error opening file");        
+     return 1;  }  
+    char ch;     
+    while ((ch = getc(fp)) != EOF) { 
+                putchar(ch);     }    
+      fclose(fp);   
+      return 0; 
+    }
