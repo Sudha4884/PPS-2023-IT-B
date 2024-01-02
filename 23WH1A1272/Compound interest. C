@@ -1,0 +1,12 @@
+//TO FIND COMPOUND INTEREST
+#include<stdio.h>
+#include<math.h>
+int main ()
+{
+    float P,R,T,amt,CI;
+    printf("\n Enter principal amt,rate,time");
+    scanf("%f%f%f",&P,&R,&T);
+    amt = P * ((pow(( 1 + R /100), T)));
+    CI = amt - P;
+    printf("\n The Compound interest for %f amt,%f rate,%f time is %.2f",P,R,T,CI);
+}
