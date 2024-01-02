@@ -1,0 +1,47 @@
+#include<stdio.h>
+int readArray(int []);
+void printArray(int [],int);
+int Rbinary(int [],int,int,int);
+void main()
+{
+int n,a[10],k,r;
+n= readArray(a);
+printArray(a,n);
+printf("\n Enter Search element ");
+scanf("%d",&k);
+r = Rbinary(a,0,n-1,k);
+if(r==-1)
+   printf("\n Unsuccessful ");
+else
+   printf("\n Succesful at %d",r);
+}
+int readArray(int x[])
+{
+int n;
+scanf("%d",&n);
+printf("\n Enter %d no of elements ",n);
+for(int i = 0; i<n;i++)
+        scanf("%d",&x[i]);
+return n;
+}
+void printArray(int x[],int n)
+{
+for(int i=0;i<n;i++)
+printf("%5d",x[i]);
+}
+int Rbinary(int a[],int low,int high,int k)
+{
+int mid;
+if(low<=high)
+{
+mid = (low+high)/2;
+if(k==a[mid])
+        return mid;
+else if(k<a[mid])
+        return Rbinary(a,low,mid - 1,k);
+else
+        return Rbinary(a,mid + 1,high,k);
+}
+else
+return -1;
+}
