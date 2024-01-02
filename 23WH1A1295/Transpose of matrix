@@ -1,0 +1,23 @@
+#include<stdio.h>
+void main() 
+{
+int A[10][10],B[10][10],C[10][10], r1, r2, r, c1, c2, c, i, j;
+printf("enter r");
+scanf("%d",&r1);
+printf("enter c");
+scanf("%d",&c1);
+
+
+{
+printf("enter %d el",r1*c1);
+for(i=0;i<r1;i++) 
+for(j=0;j<c1;j++) 
+scanf("%d",&A[i][j]);
+for(i=0;i<c1;i++) 
+for(j=0;j<r1;j++) 
+C[i][j]=A[j][i];
+for(i=0;i<c1;i++) 
+for(j=0;j<r1;j++) 
+printf("%4d",C[i][j]);
+}
+}
