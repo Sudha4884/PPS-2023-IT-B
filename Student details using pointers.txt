@@ -1,0 +1,15 @@
+#include<stdio.h>
+struct student
+{
+	char name[20];
+	int rollno;
+	float cgpa;
+}*cptr;
+void main()
+{
+struct student c1;
+cptr = &c1;
+printf("\nEnter name, rollno, cgpa");
+scanf("%s %d %f",&cptr->name,&cptr->rollno,&cptr->cgpa);
+printf("%s %d %f",cptr->name,cptr->rollno,cptr->cgpa);
+}
