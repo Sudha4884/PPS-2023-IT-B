@@ -1,0 +1,32 @@
+#include<stdio.h>
+void readArray(int x[][10],int no,int no1)
+{
+    int i,j;
+    for(i=0;i<no;i++)
+    {
+        for (j=0;j<no1;j++)
+        {
+            printf("x[%d][%d]: ",i,j);
+            scanf("%d",&x[i][j]);
+        }
+    }
+}
+void printArray(int x[][10],int no,int no1)
+{
+    int i,j;
+    for(i=0;i<no;i++)
+    {
+        for(j=0;j<no1;j++)
+        {
+            printf("%d  ",x[i][j]);
+        }
+        printf("\n");
+    }
+}
+int main()
+{
+    int A[10][10],m,n;
+    printf("Enter number of rows and columns: ");
+    scanf("%d %d",&m,&n);
+    readArray(A,m,n);
+    printArray(A,m,n);
