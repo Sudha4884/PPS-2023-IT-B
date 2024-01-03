@@ -1,0 +1,42 @@
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <limits.h>
+#include <stdbool.h>
+int is_plaindrome(int );
+int largest_palindrome(int);
+int main(){
+    int t; 
+    scanf("%d",&t);
+    for(int a0 = 0; a0 < t; a0++){
+        int n; 
+        scanf("%d",&n);
+        printf("%d\n",largest_palindrome(n));
+    }
+    return 0;
+}
+
+int is_palindrome(int n){
+    int reversed =0, original = n;
+    while(n!=0){
+        int digit = n %10;
+        reversed = 10*reversed + digit;
+        n /= 10;
+    }
+    return original == reversed;
+}
+
+int largest_palindrome(int n){
+    for(int i = n-1;i>0;i--){
+        if(is_palindrome(i)){
+            for(int j = 999; j>99;j--){
+                if(i%j ==0&& i/j<=999){
+                    return i;
+                }
+            }
+        }
+    }
+    return -1;
+}
