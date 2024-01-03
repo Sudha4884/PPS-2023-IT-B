@@ -1,0 +1,43 @@
+// insertion sort
+#include<stdio.h>
+void readArray(int[],int n);
+void printArray(int[],int n);
+void insertionSort(int[],int n);
+void main()
+{
+int A[10],n,i;
+printf("\n Enter a number");
+scanf("%d",&n);
+printf("\n Enter%d elemets",n);
+readArray(A,n);
+printArray(A,n);
+insertionSort(A,n);
+printArray(A,n);
+}
+void readArray(int A[],int n)
+{int i;
+for(i=0;i<n;i++)
+scanf("%d",&A[i]);
+}
+void printArray(int A[],int n)
+{
+int i;
+puts("\n");
+for(i=0;i<n;i++)
+printf("%d   ",A[i]);
+}
+void insertionSort(int A[],int n)
+{ 
+int i,j,element;
+for (i=0;i<n;i++)
+{
+element=A[i];
+j=i-1;
+while ((j>=0)&&(A[j]>element))
+{
+A[j+1]=A[j];
+j--;
+}
+A[j+1]=element;
+}
+}
