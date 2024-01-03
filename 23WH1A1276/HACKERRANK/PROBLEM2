@@ -1,0 +1,48 @@
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <limits.h>
+#include <stdbool.h>
+int formArray(int [],int);
+int lcmOfArray(int [],int);
+long lcm(int,int);
+int gcd(int,int);
+int main(){
+    int t,A[10]; 
+    scanf("%d",&t);
+    for(int a0 = 0; a0 < t; a0++){
+        int n; 
+        scanf("%d",&n);
+        formArray(A,n);
+        long int  res = lcmOfArray(A,n);
+        printf("%ld\n",res);
+    }
+    return 0;
+}
+
+int formArray(int A[],int n){
+    for(int i = 0; i<n;i++){
+        A[i] = i+1;
+    }
+    return 0;
+}
+
+int lcmOfArray(int A[],int n){
+    int ans = A[0];
+    for(int i =1; i <n;i++){
+        ans = lcm(ans,A[i]);
+    }
+    return ans;
+}
+
+long lcm(int a, int b){
+     long temp = (long long)a * b;
+    return temp / gcd(a, b);
+}
+
+int gcd(int a,int b){
+    if (b==0) return a;
+    else return gcd(b,a%b);
+}
