@@ -1,0 +1,34 @@
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <limits.h>
+#include <stdbool.h>
+long sumOfEven(long);
+int main(){
+    int t; 
+    scanf("%d",&t);
+    for(int a0 = 0; a0 < t; a0++){
+        long n; 
+        scanf("%ld",&n);
+        printf("%ld\n",sumOfEven(n));
+    }
+    return 0;
+}
+long sumOfEven(long n){
+    long a,b,c;
+    a=1;
+    b=2;
+    long sum =0;
+    while( b <=n){
+        if(b%2 == 0){
+            sum += b;
+        }
+        c = a+b;
+        a = b;
+        b =c;
+    }
+    
+    return sum;
+}
