@@ -1,0 +1,60 @@
+//Addition of matrices 
+#include <stdio.h>
+// Function to add two matrices
+void addMatrices(int firstMatrix[10][10], int secondMatrix[10][10], int result[10][10], int rows, int columns) 
+{
+    for (int i = 0; i < rows; ++i) 
+    {
+        for (int j = 0; j < columns; ++j) 
+        {
+            result[i][j] = firstMatrix[i][j] + secondMatrix[i][j];
+        }
+    }
+}
+
+// Function to display a matrix
+void displayMatrix(int matrix[10][10], int rows, int columns) 
+{
+    for (int i = 0; i < rows; ++i)
+     {
+        for (int j = 0; j < columns; ++j)
+         {
+            printf("%d\t", matrix[i][j]);
+         }
+        printf("\n");
+    }
+}
+
+int main()
+ {
+    int firstMatrix[10][10], secondMatrix[10][10], result[10][10];
+    int rows, columns;
+    // Input matrices size
+    printf("Enter number of rows and columns for matrices: ");
+    scanf("%d %d", &rows, &columns);
+    // Input elements of first matrix
+    printf("Enter elements of first matrix:\n");
+    for (int i = 0; i < rows; ++i)
+     {
+        for (int j = 0; j < columns; ++j) 
+        {
+            scanf("%d", &firstMatrix[i][j]);
+        }
+    }
+    // Input elements of second matrix
+    printf("Enter elements of second matrix:\n");
+    for (int i = 0; i < rows; ++i) 
+    {
+        for (int j = 0; j < columns; ++j)
+         {
+            scanf("%d", &secondMatrix[i][j]);
+        }
+    }
+    // Call function to add matrices
+    addMatrices(firstMatrix, secondMatrix, result, rows, columns);
+
+    // Display the result matrix
+    printf("\nResultant Matrix:\n");
+    displayMatrix(result, rows, columns);
+    return 0;
+}
