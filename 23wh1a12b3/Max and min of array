@@ -1,0 +1,70 @@
+//Maximum,Minimum and Average in an array of integers.
+#include<stdio.h>
+void readArray(int[],int);
+void printArray(int[],int);
+int minofArray(int[],int);
+int maxofArray(int[],int);
+int Average(int[],int);
+int main()
+{
+  int X[10],size,res1,res2;
+  scanf("%d",&size);
+  readArray(X,size);
+  res1=maxofArray(X,size);
+  if(res1!=-1)
+  printf("\n Maximum element is %d",res1);
+  res2=minofArray(X,size);
+  if(res2!=-1)
+  printf("\n Minimum element is %d",res2); 
+  Average(X,size);  
+}
+void readArray(int A[10],int n)
+{
+  int i;
+  for(i=0;i<n;i++)
+  {
+    scanf("%d",&A[i]);
+  }
+}
+void printArray(int A[10],int n)
+{
+  int i;
+  for(i=0;i<n;i++)
+  {
+    printf("\n%d",A[i]);
+  }
+}
+int maxofArray(int A[10],int n)
+{
+  int max=A[0],i;
+  for(i=0;i<n;i++)
+  {
+    if(A[i]>max)
+    {
+    max=A[i];
+    }
+   }
+   return max;
+}
+int minofArray(int A[10],int n)
+{
+  int min=A[0],i;
+  for(i=0;i<n;i++)
+  {
+    if(A[i]<min)
+    {
+    min=A[i];
+    }
+   }
+   return min;
+ }
+int Average(int A[10],int n)
+ {
+   int sum=0,average,i; 
+   for(i=0;i<n;i++)
+   {
+     sum=sum+A[i];
+   }
+   average=sum/n;
+   printf("\nAverage of all elements is %d",average); 
+ }
