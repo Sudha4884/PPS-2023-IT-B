@@ -1,0 +1,31 @@
+//finding max and min of three numbers
+#include<stdio.h>
+int main()
+{
+  int a,b,c;
+  printf("\n values of a,b,c");
+  scanf(" %d %d %d",&a,&b,&c);
+  printf("\nThe values of a,b,c are %d %d %d",a,b,c);
+  if((a > b)&&(a > c))
+  {
+    printf("\n The max of numbers is  %d",a);
+  }
+  else if((b > c)&&(b > a))
+  {
+    printf("\n The max of numbers is %d",b);
+  }
+  else
+  printf("\n The max of numbers is %d",c);
+  {
+  if((a < b)&&(a < c))
+  {
+    printf("\n The min of numbers is %d",a);
+  }
+  else if((b < a)&&(b < c))
+  {
+    printf("\n The min of numbers is %d",b);
+  }
+  else
+  printf("\n The min of numbers is %d",c);
+  }
+}
