@@ -1,41 +1,49 @@
-#include<stdio.h>
-int factorial(int n)
- {
-  int fact=1;
-  for(int i=1;i<=n;i++)
-  {
-    fact*=i;
-  }
-   return fact;
- }
-int isStrong(int n)
-{ 
-  int sum=0,temp=n;
-  while(temp>0)
-  {
-    sum+=factorial(temp%10);
-   temp/=10;
-  }
-  return sum==n;
+#include <stdio.h>
+
+// Function to calculate the factorial of a number
+int factorial(int num) {
+    if (num == 0 || num == 1)
+        return 1;
+    else
+        return num * factorial(num - 1);
 }
- void findStrongNumbers(int start,int end)
-{
-  for(int i=start;i<=end;i++)
-  {
-   if(isStrong(i))
-   {
-     printf("%d",i);
-   }
-  }
+
+// Function to check if a number is a strong number
+int isStrongNumber(int num) {
+    int originalNum = num;
+    int sum = 0;
+
+    while (num > 0) {
+        int digit = num % 10;
+        sum += factorial(digit);
+        num /= 10;
+    }
+
+    return (sum == originalNum);
 }
- int main()
-{
- int start,end;
-  printf("enter start and end of range: ");
-  scanf("%d %d ",&start,&end);
-  printf("strong numbers b/w %d and %d are: ",start,end);
-  findStrongNumbers(start,end);
-print("\n");
+
+// Function to print strong numbers up to a given range
+void printStrongNumbers(int start, int end) {
+    printf("Strong numbers between %d and %d are:\n", start, end);
+    
+    for (int i = start; i <= end; i++) {
+        if (isStrongNumber(i)) {
+            printf("%d\n", i);
+        }
+    }
 }
- 
-  
+
+int main() {
+    int startRange, endRange;
+
+    // Input range from the user
+    printf("Enter the start range: ");
+    scanf("%d", &startRange);
+    printf("Enter the end range: ");
+    scanf("%d", &endRange);
+
+    // Print strong numbers in the given range
+    printStrongNumbers(startRange, endRange);
+
+    return 0;
+}
