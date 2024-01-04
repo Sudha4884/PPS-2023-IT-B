@@ -1,0 +1,15 @@
+//simple and compound interest
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+  int si,p,t;
+  float r,CI,A;
+  scanf("%d%f%d ",&p,&r,&t);
+  si = p*r*t/100;
+  r = (1 + r/100);
+  A = p * pow(r,t);
+  CI = A - p ;
+  printf("\n The simple interest is %d",si);
+  printf("\n The compound interest is %f",CI);
+}
