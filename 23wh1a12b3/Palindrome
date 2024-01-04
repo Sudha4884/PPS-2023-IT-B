@@ -1,0 +1,29 @@
+//palindrome 
+#include<stdio.h>
+int main()
+{
+  int num,sum=0,remainder,original;
+  scanf("%d",&num);
+  printf("\n %d",num);
+  original=num;
+  while(num>0)
+  {
+    remainder=num%10;
+    sum+=remainder;
+    num=num/10;
+  }
+  printf("sum of the digits are %d",sum);
+  int reversed=0;
+  num=original;
+  while(num>0)
+  {
+  remainder=num%10;
+  reversed=reversed*10+remainder;
+  num=num/10;
+  }
+  if(original==reversed)
+  printf("\n%d is a palindrome ",original);
+  else
+  printf("\n%d is not a palindrome ", original);
+  return 0;
+}
