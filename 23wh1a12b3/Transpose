@@ -1,0 +1,49 @@
+//Transpose
+#include <stdio.h>
+// Function to find the transpose of a matrix
+void transposeMatrix(int matrix[10][10], int rows, int columns, int result[10][10]) {
+    for (int i = 0; i < rows; ++i)
+     {
+        for (int j = 0; j < columns; ++j)
+         {
+            result[j][i] = matrix[i][j];
+        }
+    }
+}
+// Function to display a matrix
+void displayMatrix(int matrix[10][10], int rows, int columns) {
+    for (int i = 0; i < rows; ++i)
+     {
+        for (int j = 0; j < columns; ++j)
+         {
+            printf("%d\t", matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+int main()
+ {
+    int matrix[10][10], result[10][10];
+    int rows, columns;
+    // Input matrix size
+    printf("Enter number of rows and columns for the matrix: ");
+    scanf("%d %d", &rows, &columns);
+    // Input elements of the matrix
+    printf("Enter elements of the matrix:\n");
+    for (int i = 0; i < rows; ++i)
+     {
+        for (int j = 0; j < columns; ++j)
+         {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+    // Call function to find the transpose
+    transposeMatrix(matrix, rows, columns, result);
+    // Display the original matrix
+    printf("\nOriginal Matrix:\n");
+    displayMatrix(matrix, rows, columns);
+    // Display the transposed matrix
+    printf("\nTransposed Matrix:\n");
+    displayMatrix(result, columns, rows);
+    return 0;
+}
