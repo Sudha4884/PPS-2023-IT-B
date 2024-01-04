@@ -1,0 +1,25 @@
+//operators-Switch statement
+#include<stdio.h>
+int main()
+{
+  int a,b;
+  char operators;
+  printf("\n Give character");
+  scanf(" %c",&operators);
+  printf("\n Give operands");
+  scanf("%d %d",&a,&b);
+  switch(operators)
+  {
+    
+    case '+':printf("\n %d",a + b);
+             break;
+    case '-':printf("\n %d",a - b);
+             break;
+    case '*':printf("\n %d",a * b);
+             break;
+    case '/':printf("\n %d",a / b);
+             break;
+    case '%':printf("\n %d",a % b);
+             break;
+  }
+}
