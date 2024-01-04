@@ -1,0 +1,16 @@
+//class Awarded for given percentage of marks!
+#include<stdio.h>
+int main()
+{
+  int percentage;
+  scanf("%d",&percentage);
+  printf("\n percentage:%d",percentage);
+  if(percentage<40)
+  printf("\n Failed");
+  else if(percentage>40 && percentage<60)
+  printf("\n Second class");
+  else if(percentage>60 && percentage<70)
+  printf("\n First class");
+  else
+  printf("\n Distinction");
+}
