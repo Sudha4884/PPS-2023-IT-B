@@ -1,0 +1,30 @@
+//Roots of a quadratic equation
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+  int a,b,c;
+  float r1,r2,disc;
+  printf("\n coefficients of a quadratic equation ");
+  scanf("%d %d %d",&a,&b,&c);
+  printf("\n%d %d %d",a,b,c);
+  disc = (b*b-4*a*c);
+  if(disc>0)
+  {
+    r1 = (-b + sqrt(disc))/(2*a);
+    r2 = (-b - sqrt(disc))/(2*a);
+    printf("\n %f %f",r1,r2);
+  }
+  else
+  if(disc==0)
+  {
+    r1=r2=-b/2*a;
+    printf("\n %f %f",r1,r2);
+  }
+  else
+  {
+    r1 = -b / 2*a;
+    r2 = sqrt(disc)/2*a;
+    printf("\n%f %f",r1,r2);
+  }
+}
