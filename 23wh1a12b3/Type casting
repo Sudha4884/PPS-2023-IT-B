@@ -1,0 +1,12 @@
+//type conversion
+#include<stdio.h>
+int main()
+{
+  double a,b,c;
+  printf("values of a ,b,c");
+  scanf("%lf %lf %lf",&a,&b,&c);
+  printf("%lf %lf %lf",a,b,c);
+  int result = (int)a +(int)b +(int)c;
+  printf("\n result = %d",result);
+  return 0;
+ }
