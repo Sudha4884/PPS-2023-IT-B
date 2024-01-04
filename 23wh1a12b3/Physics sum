@@ -1,0 +1,13 @@
+// s = ut + 1/2at^2
+ #include<stdio.h>
+ #include<math.h>
+ int main()
+ {
+   int s,u;
+   float t,a;
+   printf("\n Enter the value of s,u,a");
+   scanf(" %d %d %f",&s,&u,&a);
+   printf("\n %d \n %d \n %f ",s,u,a);
+   t = sqrt(2*(s - u*t)/a);
+   printf("\n The time interval is %f",t);
+}
