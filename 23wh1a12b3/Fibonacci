@@ -1,0 +1,17 @@
+//Fibonacci series
+#include<stdio.h>
+int main()
+{
+  int num1,num2,num3,num,i;
+  scanf("%d %d",&num1,&num2);
+  printf("\n%d \n%d",num1,num2);
+  scanf("%d",&num);
+  printf("\n %d",num);
+  for(i=2;i<=num;i++)
+  {
+    num3 = num1 + num2;
+    printf("\n%d",num3);
+    num1 = num2;
+    num2 = num3;
+  } 
+}
