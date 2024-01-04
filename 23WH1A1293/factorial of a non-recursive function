@@ -1,0 +1,24 @@
+#include <stdio.h>
+// Recursive function
+int factorial_recursive(int n) {
+if(n == 0)
+return 1;
+else
+return n * factorial_recursive(n - 1);
+}
+// Non-recursive function
+int factorial_non_recursive(int n) {
+int fact = 1;
+for(int i = 1; i <= n; i++) {
+fact *= i;
+}
+return fact;
+}
+int main() {
+int num;
+printf("Enter a positive integer: ");
+scanf("%d", &num);
+printf("Factorial (Recursive): %d\n", factorial_recursive(num));
+printf("Factorial (Non-Recursive): %d\n", factorial_non_recursive(num));
+ return 0;
+}
