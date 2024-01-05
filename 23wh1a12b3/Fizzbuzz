@@ -1,0 +1,19 @@
+//FizzBuzz Program.
+#include<stdio.h>
+int main()
+{
+  int i,n;
+  printf("\n Enter the value of 'n'");
+  scanf("%d",&n);
+  for(i=1;i<=n;i++)
+  {
+    if(i%3==0&&i%5==0)
+    printf("\n FizzBuzz");
+    else if(i%3==0)
+    printf("\n Fizz");
+    else if(i%5==0)
+    printf("\n Buzz");
+    else
+    printf("\n%d",i);
+  }
+}
