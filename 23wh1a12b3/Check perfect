@@ -1,0 +1,30 @@
+//check perfect number.
+#include<stdio.h>
+int checkPrime(int);
+int main()
+{
+  int a,res;
+  scanf("%d",&a);
+  res=checkPerfect(a);
+  if(res==1)
+  printf("\n Yes,it is a perfect number");
+  else
+  printf("\n No,it is not a perfect number");  
+}
+int checkPerfect(int num)
+{
+  int i,sum;
+  scanf("%d",&num);
+  i=1;
+  sum=0;
+  while(i<=num)
+  {
+    if(num%i==0)
+    sum+=i;
+    i++;
+  }
+   if(sum==2*num)
+   return 1;
+   else
+   return 0;
+ }
