@@ -1,0 +1,292 @@
+//PROJECT ON MATRIX CALCULATOR 
+#include <stdio.h>
+#include<math.h>
+
+int readmatrix(int rows, int cols, int arr[100][100]) 
+{printf("\n\nEnter the elements of the Required matrix-A:\n\n");
+    for (int i = 0; i < rows; i++) 
+	{
+        for (int j = 0; j < cols; j++) 
+		{
+            scanf("%d",&arr[i][j]);
+        }
+    }
+    return 0;
+}
+int readmatrix2(int rows, int cols, int b[100][100]) 
+{printf("Enter the elements of the Required matrix-B:\n");
+    for (int i = 0; i < rows; i++) 
+	{
+        for (int j = 0; j < cols; j++) 
+		{
+            scanf("%d",&b[i][j]);
+        }
+    }
+    
+    return 0;
+}
+int printarray(int rows , int cols , int arr[100][100])
+{printf("\n\nPrinting the Matrix-1:\n\n");
+	for (int i = 0; i < rows; i++)
+	{
+        for (int j = 0; j < cols; j++)
+		{
+        	printf("%d\t",arr[i][j]);
+        }
+		printf("\n");
+    }
+}
+
+int printarray2(int rows , int cols , int b[100][100])
+{printf("\n\nPrinting the Matrix-2:\n\n");
+	for (int i = 0; i < rows; i++)
+	{
+        for (int j = 0; j < cols; j++)
+		{
+        	printf("%d\t",b[i][j]);
+        }
+		printf("\n");
+    }
+}
+int transpose(int rows , int cols , int arr[100][100])
+{printf("\n\nPrinting Transpose of the Matrix :\n\n");
+	for (int i = 0; i < rows; i++) 
+	{
+        for (int j = 0; j < cols; j++) 
+		{
+        	printf("%d\t",arr[j][i]);
+        }
+        printf("\n");
+    }
+}
+int determinant(int a[100][100], int k)
+{
+  int coeff = 1, det = 0, b[100][100];
+  int i, j, rows, cols, c,count=0;
+  if (k == 1)
+    {
+     return (a[0][0]);
+    }
+  else
+    {
+     det = 0;
+     for (c = 0; c < k; c++)
+       {
+        rows = 0;
+        cols = 0;
+        for (i = 0;i < k; i++)
+          {
+            for (j = 0 ;j < k; j++)
+              {
+                b[i][j] = 0;
+                if (i != 0 && j != c)
+                 {
+                   b[rows][cols] = a[i][j];
+                   if (cols < (k - 2))
+                    cols++;
+                   else
+                    {
+                     cols = 0;
+                     rows++;
+                     }
+                   }
+               }
+             }
+          det = det + coeff * (a[0][c] * determinant(b, k - 1));
+          count++;
+          coeff = -1 * coeff;
+          }
+    }
+return det;
+}
+void transpose1(int num[100][100], int fac[100][100], int r)
+{
+  int i, j;
+  int b[100][100], inverse[100][100], d;
+ 
+  for (i = 0;i < r; i++)
+    {
+     for (j = 0;j < r; j++)
+       {
+         b[i][j] = fac[j][i];
+        }
+    }
+    
+  d = determinant(num, r);
+  if(d==0)
+  {
+  	printf("\n\nINVERSE DOES NOT EXISTS!!!\nSINCE DETERMINANT OF MATRIX = 0\n\n");
+  }
+  else{
+  
+  for (i = 0;i < r; i++)
+    {
+     for (j = 0;j < r; j++)
+       {
+        inverse[i][j] = b[i][j] / d;
+        }
+    }
+
+   printf("\n\nThe inverse of matrix:\n\n");
+   for (i = 0;i < r; i++)
+    {
+     for (j = 0;j < r; j++)
+       {
+         printf("\t%d", inverse[i][j]);
+        }
+    printf("\n");
+     }}
+}
+void cofactor(int num[100][100], int f)
+{
+ int b[100][100], fac[100][100];
+ int p, q, rows, cols, i, j;
+ for (q = 0;q < f; q++)
+ {
+   for (p = 0;p < f; p++)
+    {
+     rows = 0;
+     cols = 0;
+     for (i = 0;i < f; i++)
+     {
+       for (j = 0;j < f; j++)
+        {
+          if (i != q && j != p)
+          {
+            b[rows][cols] = num[i][j];
+            if (cols < (f - 2))
+             cols++;
+            else
+             {
+                cols= 0;
+               rows++;
+               }
+            }
+        }
+      }
+      fac[q][p] = pow(-1, q + p) * determinant(b, f - 1);
+    }
+  }
+  transpose1(num, fac, f);
+}
+
+int add_print_mat(int rows , int cols , int a[100][100],int b[100][100])
+{
+	int add_mat[100][100];
+	for (int i = 0; i < rows; i++) 
+	{
+        for (int j = 0; j < cols; j++) 
+		{
+			add_mat[i][j]=a[i][j]+b[i][j];
+			printf("%d ",add_mat[i][j]);
+        }
+        printf("\n");
+    }
+}
+int sub_matrices(int rows , int cols , int a[100][100],int b[100][100])
+{
+	int sub_mat[100][100];
+	for (int i = 0; i < rows; i++) 
+	{
+        for (int j = 0; j < cols; j++) 
+		{
+			sub_mat[i][j]=a[i][j]-b[i][j];
+			printf("%d ",sub_mat[i][j]);
+        }
+        printf("\n");
+    }
+}
+int multiply_matrices(int m,int n,int a[100][100],int b[100][100])
+{
+	int multi_mat[100][100];
+	int sum;
+	printf("\n\nPRINTTING MULTIPLIED MATRIX:\n\n");
+	for(int i=0;i<m;i++)
+	{
+		for(int j=0;j<n;j++)
+		{sum=0;
+			for(int k=0;k<3;k++)
+			{
+				sum=sum+a[i][k]*b[k][j];
+			}
+			multi_mat[i][j]=sum;
+			printf("%d ",multi_mat[i][j]);
+		}
+		printf("\n");
+	}
+}
+int main()
+{
+	printf("\t\t**WELCOME TO MATRIX OPERATIONS PROGRAM**\t\t\n\n");
+    int rows, cols,a;
+    int array[100][100];
+    int array2[100][100];
+    int key;
+    printf("\n\nENTER A KEY TO SELCECT THE APPROPRIATE OPERATION :\n\n");
+    printf("key : 1 ------- PRINT MATRIX\nkey : 2 ------- PRINT TRANSPOSE\nkey : 3 ------- PRINT DETERMINANT\nkey : 4 ------- ADDTION OF MATRICES\nkey : 5 ------- SUBTRACTION OF MATRIX\nkey : 6 ------- PRODUCT OF MATRIX\nkey : 7 ------- INVERSE OF  MATRIX\nkey : 8 ------- EXIT\n");
+    scanf("%d",&key);
+     printf("Enter the number of rows (max 3): ");
+    scanf("%d", &rows);
+    printf("Enter the number of columns (max 3): ");
+    scanf("%d", &cols);
+    printf("NOTE : Max range of matrix is 3X3 \n\nIt takes Integer value only\n\n");
+    if(key==1)
+    {
+    	readmatrix(rows, cols, array);
+    	printarray(rows , cols , array);
+	}
+	else if(key == 2)
+	{
+		readmatrix(rows, cols, array);
+		printarray(rows , cols , array);
+		transpose(rows, cols, array);
+	}
+	else if(key==3)
+	{
+		readmatrix(rows,cols,array);
+		determinant(array,rows);
+		printarray(rows , cols , array);
+		a=determinant(array,rows);
+		printf("Determinant of matrix is=%d",a);
+	}
+	else if(key == 4)
+	{
+		readmatrix(rows, cols, array);
+		readmatrix2(rows,cols,array2);
+		printarray(rows , cols , array);
+		printarray(rows , cols , array2);
+		printf("PRINTING THE ADDTION OF MATRICES:\n");
+		add_print_mat(rows , cols , array,array2);
+	}
+	else if(key == 5)
+	{
+		readmatrix(rows, cols, array);
+		readmatrix2(rows,cols,array2);
+		printarray(rows , cols , array);
+		printarray(rows , cols , array2);
+		printf("PRINTING THE SUBTRACTION OF MATRICES:\n");
+		sub_matrices(rows,cols,array,array2);	
+	}
+	else if(key == 6)
+	{
+		readmatrix(rows, cols, array);
+		readmatrix2(rows,cols,array2);
+		printarray(rows , cols , array);
+		printarray(rows , cols , array2);
+		printf("PRINTING THE MULTIPLICATION OF MATRICES:\n");
+		multiply_matrices(rows,cols,array,array2);		
+	}	
+	else if(key == 7)
+	{
+		readmatrix(rows, cols, array);
+		printarray(rows , cols , array);
+		printf("PRINTING THE INVERSE OF THE MATRIX:\n");
+		cofactor(array, rows);
+	}
+	else if(key == 8 )
+	printf("\nEXIT\n\n");
+	else
+	{
+		printf("\nTHANK YOU!!!");
+	}
+}
