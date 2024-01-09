@@ -1,0 +1,20 @@
+#include<stdio.h>
+int vowel(char);
+void main()
+{
+    char CH;
+    scanf("%c",&CH);
+    int res;
+    res = vowel(CH);
+    if(res)
+    printf("\n %c is Vowel",CH);
+    else
+    printf("\n %c is Consonant",CH);
+}
+int vowel(char ch)
+{
+    if(ch=='a'||ch=='e' || ch=='i' || ch=='o' || ch=='u'|| ch=='A'||ch=='E' || ch=='I' || ch=='O' || ch=='U')
+    return 1;
+    else
+    return 0;
+}
