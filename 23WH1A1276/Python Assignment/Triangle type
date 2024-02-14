@@ -1,0 +1,23 @@
+#  #Check whether the triangle is scalene, isosceles, equilateral(Input the three sides of the triangle)
+
+side1 = float(input("Enter the length of the first side: "))
+side2 = float(input("Enter the length of the second side: "))
+side3 = float(input("Enter the length of the third side: "))
+
+if side1 == side2 == side3:
+    print("The triangle is equilateral.")
+elif side1 == side2 or side1 == side3 or side2 == side3:
+    print("The triangle is isosceles.")
+else:
+    print("The triangle is scalene.")
+
+#Check whether the triangle is scalene, isosceles, equilateral(Input the three sides of the triangle)
+s1 = int(input("Enter a side:"))
+s2 = int(input("Enter a side:"))
+s3 = int(input("Enter a side:"))
+if s1 == s2 == s3:
+    print("Equilateral Triangle.")
+elif (s1==s2) or (s2==s3) or (s1==s3):
+    print("Isosceles.")
+else:
+    print("Scalene.")
