@@ -1,0 +1,10 @@
+#6.	Swap two numbers
+#a)	Using temporary variable
+a = int(input())
+b = int(input())
+swap(a,b)
+def swap(a,b):
+   a = (a+b)-a
+   b = (a+b)-a
+   print(a,b)
+#b)	Without using temporary variable
