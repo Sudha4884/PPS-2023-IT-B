@@ -1,0 +1,6 @@
+#Write a Python program to find those numbers which are divisible by 7 and multiples of 5, between 1500 and 2700
+def find_num(lo_limit,up_limit):
+    for i in range(lo_limit,up_limit+1):
+        if i % 7 == 0 and i % 5 == 0:
+            print(i)
+find_num(1500,2700)
