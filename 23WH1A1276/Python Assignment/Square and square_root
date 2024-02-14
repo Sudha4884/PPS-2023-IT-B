@@ -1,0 +1,6 @@
+#Program to find the square and square root of the given number
+import math
+def square(num):
+    print(math.sqrt(num))
+    print(pow(num,2))
+square(9)
