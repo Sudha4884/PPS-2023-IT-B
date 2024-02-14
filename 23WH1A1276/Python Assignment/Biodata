@@ -1,0 +1,5 @@
+#Printing info
+name = input("Enter your name: ")
+dob = input("Enter your date of birth(in format dd-mm-yyyy): ")
+age = input("Enter your age: ")
+print(f"Name: {name}\nDate Of Birth: {dob}\nAge: {age}")
