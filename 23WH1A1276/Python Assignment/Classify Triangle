@@ -1,0 +1,23 @@
+#Check whether the given triangle is acute , obtuse or right angled by entering 3 sides of the triangle
+def classify_triangle(a,b,c):
+    if not ((a+b)>c and (b+c)>a and (c+a)>b):
+        return "Invalid"
+    a_square = a ** 2
+    b_square = b**2
+    c_square = c**2
+    if a_square + b_square > c_square and b_square + c_square > a_square and c_square + a_square > b_square:
+        if a_square + b_square == c_square or b_square + c_square == a_square or a_square + c_square == b_square:
+            return "Right"
+        elif a_square + b_square < c_square or b_square + c_square < a_square or a_square + c_square < b_square:
+            return "Obtuse"
+        else:
+            return "Acute"
+    else:
+        return "Invalid"
+a = float(input("Enter the length of the first side: "))
+b = float(input("Enter the length of the second side: "))
+c = float(input("Enter the length of the third side: "))
+
+triangle_type = classify_triangle(a, b, c)
+
+print(f"The triangle is: {triangle_type}")
