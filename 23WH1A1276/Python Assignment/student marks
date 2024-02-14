@@ -1,0 +1,11 @@
+#Program to enter the marks of 5 subjects of a student. Compute the total and average mark of the student and display it.
+marks = []
+for i in range(0,5):
+    a = int(input(f"Enter marks of student {i+1}: "))
+    marks.append(a)
+sum = 0
+for i in marks:
+    sum += i
+print(f"Total marks are: {sum}.")
+avg = sum / len(marks)
+print(f"Average marks {avg}.")
