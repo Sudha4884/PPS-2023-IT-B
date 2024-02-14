@@ -1,0 +1,30 @@
+# define a function is palindrome for string
+
+def is_palindrome(string):
+  string = string.lower()
+  string = string.replace(" ", "")
+  return string == string[::-1]
+
+print(is_palindrome("abba"))
+
+#  palindrome of numbers
+
+def is_palindrome(num):
+  return str(num) == str(num)[::-1]
+
+print(is_palindrome(121))
+
+#palindrome of numbers
+def is_palindrome(num):
+    if num == rev_num(num):
+        print("Yes")
+    else:
+        print("No")
+def rev_num(num):
+    rev = 0
+    while num != 0:
+        rem = num % 10
+        rev = (rev*10)+ rem
+        num //= 10
+    return rev
+(is_palindrome(121))
