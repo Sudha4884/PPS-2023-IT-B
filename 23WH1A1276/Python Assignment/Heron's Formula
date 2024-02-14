@@ -1,0 +1,10 @@
+#Program to find the area of the triangle using Heron’s formula
+import math
+def heron_formula(a,b,c):
+    s = (a+b+c)/2
+    area = (s*1(s-a)*(s-b)*(s-c)) ** 0.5
+    return area
+s1 = int(input())
+s2 = int(input())
+s3 = int(input())
+print(heron_formula(s1,s2,s3))
