@@ -1,0 +1,14 @@
+# program to print biodata
+name = input(" name: ")
+dob = input(" date of birth: ")
+age = input(" age: ")
+print(f"Name: {name}\nDate Of Birth: {dob}\nAge: {age}")
+
+name = input("Enter your name: ")
+dob = input("Enter your date of birth: ")
+age = input("Enter your age: ")
+branch =input("Enter your branch: ")
+college=input("Enter your college name:")
+email = input("Enter your email id: ")
+number=input("Enter your phone number: ")
+print(f"Name: {name}\nDate Of Birth: {dob}\nAge: {age}\nBranch: {branch}\nCollege: {college}\nEmail id: {email}\nPhone number: {number}")
