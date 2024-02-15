@@ -1,0 +1,10 @@
+#Program to find the square and square root of the given number
+import math
+def find_square_and_square_root(num):
+    square = num ** 2
+    square_root = math.sqrt(num)
+    return square, square_root
+num = 5
+square, square_root = find_square_and_square_root(num)
+print(f"Square: {square}")
+print(f"Square root: {square_root}")
