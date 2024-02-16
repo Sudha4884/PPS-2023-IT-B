@@ -1,0 +1,8 @@
+name = input("Enter your name ")
+age = int(input("Enter your age "))
+dob = input("Enter dob ")
+branch = input("Enter your branch ")
+college = input("Enter your college ")
+emailID = input("Enter your emailID ")
+phoneNO = input("Enter your phone number ")
+print("Your biodata is\nName:",name,"\nAge:",age,"\nDOB:",dob,"\nBranch:",branch,"\nCollege:",college,"\nemailID:",emailID,"\nPhone number:",phoneNO)
