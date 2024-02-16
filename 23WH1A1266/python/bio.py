@@ -1,0 +1,7 @@
+print("Name: lauretta")
+print("Age: 18")
+print("Gender: Female")
+print("Occupation: student")
+print("Education: bvrit")
+print("Skills: Python, Java, HTML")
+print("Languages Spoken: English, Telugu, Hindi")
