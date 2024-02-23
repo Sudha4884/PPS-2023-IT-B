@@ -1,0 +1,11 @@
+import math
+
+def classify_triangle(a, b, c):
+    # Calculate the squares of the side lengths
+    a_squared = a ** 2
+    b_squared = b ** 2
+    c_squared = c ** 2
+
+    # Calculate the cosine of each angle using the Law of Cosines
+    cos_a = (b_squared + c_squared - a_squared) / (2 * b * c)
+
