@@ -1,0 +1,12 @@
+def swap_with_temp(a, b):
+    temp = a
+    a = b
+    b = temp
+    return a, b
+
+# Example usage:
+num1 = 5
+num2 = 10
+print("Before swapping:", num1, num2)
+num1, num2 = swap_with_temp(num1, num2)
+print("After swapping:", num1, num2)
