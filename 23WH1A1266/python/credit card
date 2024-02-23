@@ -1,0 +1,19 @@
+def hide_credit_card_number(credit_card_number):
+    # Determine the length of the credit card number
+    num_digits = len(credit_card_number)
+
+    # If the length is less than or equal to 4, return the credit card number as it is
+    if num_digits <= 4:
+        return credit_card_number
+
+    # Otherwise, hide all characters except the last four with asterisks
+    hidden_part = '*' * (num_digits - 4)
+
+    # Concatenate the hidden part with the last four digits
+    return hidden_part + credit_card_number[-4:]
+
+# Example usage:
+credit_card_number = input("Enter the credit card number: ")
+
+hidden_credit_card = hide_credit_card_number(credit_card_number)
+print("Hidden credit card number:", hidden_credit_card)
