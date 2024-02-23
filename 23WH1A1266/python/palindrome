@@ -1,0 +1,14 @@
+def is_palindrome(number):
+    # Convert the number to a string for easy comparison
+    num_str = str(number)
+
+    # Check if the string is equal to its reverse
+    return num_str == num_str[::-1]
+
+# Example usage:
+number = int(input("Enter a number: "))
+
+if is_palindrome(number):
+    print(number, "is a palindrome.")
+else:
+    print(number, "is not a palindrome.")
