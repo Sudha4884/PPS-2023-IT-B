@@ -1,0 +1,23 @@
+def count_vowels(word):
+    # Define a set of vowels
+    vowels = {'a', 'e', 'i', 'o', 'u'}
+
+    # Convert the word to lowercase to make the comparison case-insensitive
+    word = word.lower()
+
+    # Initialize a count variable to store the count of vowels
+    count = 0
+
+    # Iterate through each character in the word
+    for char in word:
+        # If the character is a vowel, increment the count
+        if char in vowels:
+            count += 1
+
+    return count
+
+# Example usage:
+word = input("Enter a word: ")
+
+vowel_count = count_vowels(word)
+print("Number of vowels in the word:", vowel_count)
