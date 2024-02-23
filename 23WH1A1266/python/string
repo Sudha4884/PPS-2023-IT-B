@@ -1,0 +1,13 @@
+def equal_x_and_o(string):
+    # Count the occurrences of 'X' and 'O' in the string
+    count_x = string.lower().count('x')
+    count_o = string.lower().count('o')
+
+    # Check if the counts are equal or both are zero
+    return count_x == count_o
+
+# Example usage:
+input_string = input("Enter a string: ")
+
+result = equal_x_and_o(input_string)
+print("Are the counts of Xs and Os equal?", result)
