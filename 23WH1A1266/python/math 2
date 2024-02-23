@@ -1,0 +1,13 @@
+import math
+
+def square_and_square_root(number):
+    square = number ** 2
+    square_root = math.sqrt(number)
+    return square, square_root
+
+# Example usage:
+number = float(input("Enter a number: "))
+
+square, square_root = square_and_square_root(number)
+print("Square of", number, ":", square)
+print("Square root of", number, ":", square_root)
