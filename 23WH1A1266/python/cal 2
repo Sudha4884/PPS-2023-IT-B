@@ -1,0 +1,19 @@
+def calculator(num1, operator, num2):
+    # Perform the operation based on the operator
+    if operator == '+':
+        return num1 + num2
+    elif operator == '-':
+        return num1 - num2
+    elif operator == '/':
+        # Check for division by zero
+        if num2 == 0:
+            return "Error: Division by zero"
+        else:
+            return num1 / num2
+    elif operator == '*':
+        return num1 * num2
+    else:
+        return "Error: Invalid operator"
+
+# Example usage:
+num1 = int(input("Enter
