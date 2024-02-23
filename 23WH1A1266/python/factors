@@ -1,0 +1,22 @@
+def find_factors(number):
+    factors = []
+    for i in range(1, number):
+        if number % i == 0:
+            factors.append(i)
+    return factors
+
+def is_perfect(number):
+    factors = find_factors(number)
+    total = sum(factors)
+    return total == number
+
+# Example usage:
+num = int(input("Enter a number: "))
+
+factors = find_factors(num)
+print("Factors of", num, "are:", factors)
+
+if is_perfect(num):
+    print(num, "is a perfect number.")
+else:
+    print(num, "is not a perfect number.")
