@@ -1,0 +1,16 @@
+def sort_list(numbers, order):
+    if order == "asc":
+        return sorted(numbers)
+    elif order == "desc":
+        return sorted(numbers, reverse=True)
+    elif order == "none":
+        return numbers
+    else:
+        print("Invalid sorting order. Please choose from 'asc', 'desc', or 'none'.")
+
+# Example usage:
+numbers = [4, 2, 7, 1, 5, 3]
+sorting_order = input("Enter sorting order ('asc', 'desc', or 'none'): ")
+
+sorted_numbers = sort_list(numbers, sorting_order)
+print("Sorted numbers:", sorted_numbers)
