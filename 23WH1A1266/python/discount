@@ -1,0 +1,10 @@
+def apply_discount(full_price, discount_percentage):
+    discount_amount = full_price * (discount_percentage / 100)
+    discounted_price = full_price - discount_amount
+    return discounted_price
+
+# Example usage:
+price = 100
+discount = 20
+final_price = apply_discount(price, discount)
+print("Final Price after", discount, "% discount:", final_price)
