@@ -1,0 +1,8 @@
+def extract_integers(input_list):
+    return [x for x in input_list if isinstance(x, int)]
+
+# Example usage:
+mixed_list = [1, 'apple', 2, 'banana', 3, 'cherry', 4]
+integers_only = extract_integers(mixed_list)
+print("Integers only:", integers_only)
+print("integera on")
