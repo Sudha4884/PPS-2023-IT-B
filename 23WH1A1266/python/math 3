@@ -1,0 +1,11 @@
+import math
+
+def radians_to_degrees(radians):
+    # Convert radians to degrees using the formula
+    degrees = radians * (180 / math.pi)
+    return degrees
+
+# Example usage:
+radians_input = float(input("Enter the angle in radians: "))
+degrees_output = radians_to_degrees(radians_input)
+print("Angle in degrees:", degrees_output)
