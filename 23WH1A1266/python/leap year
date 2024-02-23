@@ -1,0 +1,19 @@
+def is_leap_year(year):
+    if year % 4 == 0:
+        if year % 100 == 0:
+            if year % 400 == 0:
+                return True  # Divisible by 400 is a leap year
+            else:
+                return False
+        else:
+            return True  # Divisible by 4 but not by 100 is a leap year
+    else:
+        return False  # Not divisible by 4 is not a leap year
+
+# Example usage:
+year = int(input("Enter a year: "))
+
+if is_leap_year(year):
+    print(year, "is a leap year.")
+else:
+    print(year, "is not a leap year.")
