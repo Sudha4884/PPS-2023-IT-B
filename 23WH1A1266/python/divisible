@@ -1,0 +1,12 @@
+def is_divisible(number, divisor):
+    # Check if number is divisible by divisor
+    return number % divisor == 0
+
+# Example usage:
+num1 = int(input("Enter the first number: "))
+num2 = int(input("Enter the second number (divisor): "))
+
+if is_divisible(num1, num2):
+    print(num1, "is divisible by", num2)
+else:
+    print(num1, "is not divisible by", num2)
