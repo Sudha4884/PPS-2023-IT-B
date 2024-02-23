@@ -1,0 +1,19 @@
+def sum_of_digits(number):
+    # Initialize sum to 0
+    total = 0
+
+    # Iterate through each digit of the number
+    while number > 0:
+        # Extract the last digit using modulus operator
+        digit = number % 10
+        # Add the digit to the total
+        total += digit
+        # Remove the last digit from the number
+        number //= 10
+
+    return total
+
+# Example usage:
+number = int(input("Enter a number: "))
+result = sum_of_digits(number)
+print("Sum of the digits of the number:", result)
