@@ -1,0 +1,7 @@
+from math import sqrt
+h1 = 99
+h2 = 88
+k1 = 33
+k2 = 44
+l = sqrt(((h1-h2)**2)+((k1-k2)**2))   
+print(l)
