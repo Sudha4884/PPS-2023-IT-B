@@ -1,0 +1,7 @@
+prince = 2
+rate = 4
+nam = 6
+n = 8
+t = 9
+a = prince*(1+rate/nam)**n*t                     
+print(a)
