@@ -1,0 +1,7 @@
+name = {"shiru"}
+place = {"warangal"}
+date_of_birth = {"29/02/2000"}
+email = {"30sv1h08f6@gamil.com"}
+age = {"28"}
+contact = {"8844229910"}
+print(name,place,date_of_birth,contact,age,email)
