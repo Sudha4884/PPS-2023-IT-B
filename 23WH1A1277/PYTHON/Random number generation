@@ -1,0 +1,13 @@
+import random
+def guess():
+    num = random.randint(1, 11)
+
+    for _ in range(3):
+        guess = int(input("Guess a number between 1 and 10: "))
+        if guess == num:
+            print("Congratulations! You win .")
+            return
+        else:
+            print(" Try again :)")
+            print(f"You lose:( The correct number is {num}.")
+
