@@ -1,0 +1,2 @@
+txt = int(input())
+print("{:,}".format(txt))
