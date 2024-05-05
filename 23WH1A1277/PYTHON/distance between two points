@@ -1,0 +1,13 @@
+#defining functions to use
+import math
+def distance(x1,y1,x2,y2):
+  return(math.sqrt((x2-x1)**2+(y2-y1)**2))
+  
+
+#giving input
+x1 = int(input("enter: "))
+y1 = int(input("enter: "))
+x2 = int(input("enter: "))
+y2 = int(input("enter: "))
+
+distance(x1,y1,x2,y2)
