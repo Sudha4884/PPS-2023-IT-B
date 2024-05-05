@@ -1,0 +1,7 @@
+def invert_dictionary(dct):
+  d1 = {}
+  for key,value in dct.items():
+    d1[value] = key
+  return d1
+dict1 = {'banana':4,'apple':5,'orange':6}
+print(invert_dictionary(dict1))
