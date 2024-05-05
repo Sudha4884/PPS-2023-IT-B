@@ -1,0 +1,9 @@
+#expansion
+from sympy import symbols , expand
+x, y = symbols('x y')
+exp1 = 3*(x+y)
+exp2 = 3*x + 4*y
+expand_exp = expand(exp1)
+print(expand_exp)
+expand_exp = expand(exp2)
+print(expand_exp)
