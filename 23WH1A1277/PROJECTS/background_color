@@ -1,0 +1,36 @@
+#HTML CODE FOR BG COLOR
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style1.css">
+    <title>Colors</title>
+</head>
+<body>
+    <div class="container">
+        <button id="submit"type="button" class="btn btn-outline-dark">Dark</button>
+    </div>
+
+    <script src = "script.js"></script>
+</body>
+</html>
+
+#CSS CODE FOR BG COLOR
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#JS CODE FOR BG COLOR
+var colors = ["Orangered","Blue","Yellow","Green","Orange", "Cyan","DodgerBlue", "Violet", "Navy", "Purple", "YellowGreen", "OrangeRed", "SlateBlue", "Salmon", "Crimson", "HotPink", "Magenta"];
+var index = 0;
+
+document.querySelector("#submit").addEventListener("click", () => {
+  if(index > colors.length - 1)
+    index = 0;
+  document.body.style.backgroundColor = colors[index++];  
+});
