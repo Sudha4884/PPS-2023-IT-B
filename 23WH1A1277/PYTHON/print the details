@@ -1,0 +1,10 @@
+def details(n,a,e,p):
+  print(" "," "," "," ",n,a,e,p)
+
+
+n = (input("enter: "))
+a = (input("enter: "))
+e = (input("enter: "))
+p = (input("enter: "))
+
+details(n,a,e,p)
