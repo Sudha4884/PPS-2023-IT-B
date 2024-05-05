@@ -1,0 +1,20 @@
+#fibonnaci series(prime)
+def fib():
+  a = 0
+  b = 1
+  while True :
+    c = a+b
+    if c>50 :
+      break
+    else :
+      if prime(c):
+        print(c)
+    a,b = b,c
+def prime(num):
+  if num == 1 :
+    return False
+  for i in range(2,num):
+    if num%i == 0:
+      return False
+  return True
+fib()
