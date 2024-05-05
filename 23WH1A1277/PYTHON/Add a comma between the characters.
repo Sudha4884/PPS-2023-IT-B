@@ -1,0 +1,14 @@
+def add_coma(a):
+  return ','.join(a)
+
+input = "apple"
+print(add_coma(input))
+
+def add_coma1(a):
+  y = ' '
+  for i in a:
+    y += i + ','
+  print(y)
+b= "apple"
+add_coma1(b)
+
