@@ -1,0 +1,15 @@
+#include<stdio.h>
+int main()
+{
+    int a,b;
+    printf("enter 1st number: ");
+    scanf("%d",&a);
+    printf("enter 2nd number: ");
+    scanf("%d",&b);
+    printf(" addition : %d \n",a+b);
+    printf(" substraction : %d \n",a-b);
+    printf(" multiplication : %d \n",a*b);
+    printf(" division(quotient) : %d \n",a/b);
+    printf(" modulo division(reminder) : %d \n",a%b);
+    return 0;
+}
