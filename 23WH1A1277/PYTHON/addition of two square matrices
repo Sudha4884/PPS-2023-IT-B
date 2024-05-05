@@ -1,0 +1,21 @@
+R = int(input("enter number of rows : "))
+C = int(input("enter number of columns : "))
+M =[]
+print("enter the  " " elements : ".format(R*C))
+for i in range(R):
+  a = []
+  for j in range(C):
+    a.append(int(input()))
+  M.append(a)
+
+for i in range(R):
+    for j in range(C):
+        print(M[i][j], end = " ")
+    print()
+for i in range(len(M1)):
+   for j in range(len(M1[0])):
+       result[i][j] = M1[i][j] + M2[i][j]
+
+for r in result:
+   print(r)
+
