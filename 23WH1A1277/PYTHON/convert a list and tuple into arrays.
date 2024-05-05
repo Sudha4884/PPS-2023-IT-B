@@ -1,0 +1,11 @@
+#list tupple in array
+import numpy as np
+input1 = input("Enter elements ")
+lst1 = input1.split()
+lst1 = [int(num) for num in lst1]
+print(lst1)
+arr = np.array(lst1)
+print(arr)
+lst2 = np.array([1, 2, 3, 4, 5])
+tup1 = np.array((1, 2, 3, 4, 5))
+print(lst2, tup1
