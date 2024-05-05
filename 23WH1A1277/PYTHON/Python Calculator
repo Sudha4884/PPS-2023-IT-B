@@ -1,0 +1,25 @@
+#defining functions to use
+def add(a,b):
+  return a+b
+def subtract(a,b):
+    return a-b
+def multiply(a,b):
+    return a*b
+def divide(a,b):
+    return a/b
+
+#giving input
+a = int(input("enter first number :"))
+b = int(input("enter second number :"))
+
+#printing the final result
+print("select one opertation \n"  "1.add \n"  "2.subtract \n"  "3.multiply \n"  "4.divide \n")
+select = int(input("select from 1,2,3,4 :"))
+if select == 1 :
+  print(a,"+",b ,"=",add(a,b))
+elif select == 2 :
+  print(a,"-",b ,"=",subtract(a,b))
+elif select == 3 :
+  print(a,"*",b ,"=",multiply(a,b))
+else :
+  print(a,"/",b ,"=",divide(a,b))
