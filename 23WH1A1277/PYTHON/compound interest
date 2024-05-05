@@ -1,0 +1,12 @@
+#defining functions to use
+def compound_interest(p,r,t):
+  a = (p*pow((1+r/100),t))
+  ci = a - p
+  print("the compound interest is :",ci)
+ 
+#giving input
+p = int(input("enter: "))
+r = int(input("enter: "))
+t = int(input("enter: "))
+
+compound_interest(p,r,t)
