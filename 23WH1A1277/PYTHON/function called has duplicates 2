@@ -1,0 +1,24 @@
+def remove_duplicates(lst)->bool:
+  lst1 = []
+  for i in lst:
+    if i not in lst1:
+      lst1.append(i)
+  if len(lst)>len(lst1):
+    return lst1
+  else :
+    return lst
+
+list1 = [1,2,2,3,5]
+print(remove_duplicates(list1))
+
+def remove_duplicates2(A):
+  return list(set(A))
+list2 = [1,4,3,3,5]
+print(remove_duplicates2(list2))
+
+
+def remove_word(s,word):
+  return s.replace(word, ' ')
+a = "apple is sweet and i love apple"
+b = "apple"
+print(remove_word(a,b))
