@@ -1,0 +1,246 @@
+import tkinter as tk
+from tkinter import simpledialog
+from tkinter import ttk
+import math
+from PIL import Image, ImageTk
+import pygame
+
+# Initialize pygame mixer
+pygame.mixer.init()
+
+# Function to toggle music on and off
+music_playing = True
+
+def toggle_music():
+    global music_playing
+    if music_playing:
+        stop_music()
+        music_playing = False
+        mute_button.config(text="Unmute")
+    else:
+        play_music()
+        music_playing = True
+        mute_button.config(text="Mute")
+
+def play_music():
+    pygame.mixer.music.load('music_bgm.mp3')  # Replace with the path to your background music file
+    pygame.mixer.music.play(-1)  # -1 makes the music loop indefinitely
+
+def stop_music():
+    pygame.mixer.music.stop()
+
+def play_restart_music():
+    pygame.mixer.music.load('restart_bgm.mp3')  
+    pygame.mixer.music.play(-1)
+
+def sphere_volume(radius):
+    return (4/3) * math.pi * (radius ** 3)
+
+def box_volume(x1, y1, z1, x2, y2, z2):
+    return abs(x2 - x1) * abs(y2 - y1) * abs(z2 - z1)
+
+def simulate_balloons(points, box_corner1, box_corner2):
+    volume_of_box = box_volume(*box_corner1, *box_corner2)
+    balloon_volumes = []
+    for point in points:
+        distances = [
+            abs(point[0] - box_corner1[0]), abs(point[0] - box_corner2[0]),
+            abs(point[1] - box_corner1[1]), abs(point[1] - box_corner2[1]),
+            abs(point[2] - box_corner1[2]), abs(point[2] - box_corner2[2])
+        ]
+        radius = min(distances)
+        balloon_volumes.append(sphere_volume(radius))
+    total_balloon_volume = sum(balloon_volumes)
+    remaining_volume = volume_of_box - total_balloon_volume
+    return round(remaining_volume)
+
+root = tk.Tk()
+root.geometry('1200x800')
+root.title("Balloon Box Game")
+
+def resize_image(image_path, width, height):
+    image = Image.open(image_path)
+    image = image.resize((width, height), Image.LANCZOS)
+    return ImageTk.PhotoImage(image)
+
+def update_backgrounds():
+    global start_bg_photo, box_bg_photo
+    window_width = root.winfo_width()
+    window_height = root.winfo_height()
+
+    start_bg_photo = resize_image('bg.jpg', window_width, window_height)
+    start_frame_bg.config(image=start_bg_photo)
+
+    box_bg_photo = resize_image('background.jpg', window_width, window_height)
+    box_frame_bg.config(image=box_bg_photo)
+
+# Load and resize images initially
+start_bg_photo = resize_image('bg.jpg', 1200, 800)
+box_bg_photo = resize_image('background.jpg', 1200, 800)
+
+balloon_image = Image.open('balloon.jpg')
+balloon_image = balloon_image.resize((40, 60), Image.LANCZOS)
+balloon_photo = ImageTk.PhotoImage(balloon_image)
+
+# Create and configure styles
+style = ttk.Style()
+style.configure("Start.TButton",
+                font=("Helvetica", 20, "bold"),
+                background='#4CAF50',
+                foreground='black',
+                padding=10,
+                borderwidth=0,
+                relief="flat")
+style.map("Start.TButton",
+          background=[('active', '#45a049')],
+          foreground=[('disabled', 'gray')])
+
+style.configure("Input.TButton",
+                font=("Helvetica", 16, "bold"),
+                background='#FF8C00',
+                foreground='black',
+                padding=10,
+                borderwidth=0,
+                relief="flat")
+style.map("Input.TButton",
+          background=[('active', '#FF7F00')],
+          foreground=[('disabled', 'gray')])
+
+style.configure("Restart.TButton",
+                font=("Helvetica", 20, "bold"),
+                background='#FF6347',
+                foreground='black',
+                padding=10,
+                borderwidth=0,
+                relief="flat")
+style.map("Restart.TButton",
+          background=[('active', '#FF4500')],
+          foreground=[('disabled', 'gray')])
+
+# Adding padding to buttons to mimic rounded corners
+style.configure("TButton", padding=(10, 5))
+
+start_frame = tk.Frame(root)
+start_frame.pack(expand=True, fill='both')
+start_frame_bg = tk.Label(start_frame, image=start_bg_photo)
+start_frame_bg.place(relwidth=1, relheight=1)
+
+start_label = tk.Label(start_frame, text="Welcome TO Balloon Box Game!", font=("Comic Sans MS", 30, "bold"), fg='#333')
+start_label.pack(pady=40)
+
+team_label = tk.Label(start_frame, text="Powered by TEAM 8", font=("Arial", 12), fg='#333')
+team_label.place(relx=1, rely=1, anchor='se', x=-10, y=-10)
+
+def start_game():
+    start_frame.pack_forget()
+    box_frame.pack(expand=True, fill='both')
+    play_music()
+    show_restart_button()
+
+start_button = ttk.Button(start_frame, text="Start Game", command=start_game, style="Start.TButton")
+start_button.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
+
+box_frame = tk.Frame(root)
+box_frame_bg= tk.Label(box_frame, image=box_bg_photo)
+box_frame_bg.place(relwidth=1, relheight=1)
+
+canvas = tk.Canvas(box_frame, width=900, height=750, bg='light blue', highlightthickness=0)
+canvas.grid(row=0, column=0, padx=20, pady=20, rowspan=4, sticky="nsew")
+
+# Draw 3D box
+def draw_3d_box():
+    front_top_left = (180, 120)
+    front_top_right = (620, 120)
+    front_bottom_left = (180, 480)
+    front_bottom_right = (620, 480)
+    
+    back_top_left = (250, 200)
+    back_top_right = (750, 200)
+    back_bottom_left = (250, 600)
+    back_bottom_right = (750, 600)
+
+    canvas.create_polygon(front_top_left, front_top_right, front_bottom_right, front_bottom_left, fill="#00487D", outline="")
+    canvas.create_polygon(back_top_left, back_top_right, back_bottom_right, back_bottom_left, fill="white", outline="")
+    canvas.create_polygon(front_top_left, front_top_right, back_top_right, back_top_left, fill="#003366", outline="")
+    canvas.create_polygon(front_bottom_left, front_bottom_right, back_bottom_right, back_bottom_left, fill="#003366", outline="")
+    canvas.create_polygon(front_top_left, front_bottom_left, back_bottom_left, back_top_left, fill="#0066CC", outline="")
+    canvas.create_polygon(front_top_right, front_bottom_right, back_bottom_right, back_top_right, fill="#0066CC", outline="")
+
+draw_3d_box()
+
+def draw_balloons(points, box_corner1, box_corner2):
+    # Determine the scale based on the size of the box
+    x_scale = (620 - 180) / abs(box_corner1[0] - box_corner2[0])
+    y_scale = (480 - 120) / abs(box_corner1[1] - box_corner2[1])
+    z_scale = (600 - 200) / abs(box_corner1[2] - box_corner2[2])
+
+    out_of_bounds_points = []
+    for point in points:
+        if (box_corner1[0] <= point[0] <= box_corner2[0] and
+            box_corner1[1] <= point[1] <= box_corner2[1] and
+            box_corner1[2] <= point[2] <= box_corner2[2]):
+            # Calculate the scaled coordinates for drawing the balloon
+            x = (point[0] - min(box_corner1[0], box_corner2[0])) * x_scale + 180
+            y = (point[1] - min(box_corner1[1], box_corner2[1])) * y_scale + 120
+            z = (point[2] - min(box_corner1[2], box_corner2[2])) * z_scale + 200  # Adjusting for z-coordinate
+            canvas.create_image(x, y, image=balloon_photo, anchor="nw")  # Using anchor to align the image
+        else:
+            out_of_bounds_points.append(point)
+    return out_of_bounds_points
+
+def get_input(event=None):
+    n = simpledialog.askinteger("Input", "Number of points (1-6):", parent=root, minvalue=1, maxvalue=6)
+    box_corner1 = simpledialog.askstring("Input", "Enter the coordinates of the first corner (x,y,z):", parent=root)
+    box_corner2 = simpledialog.askstring("Input", "Enter the coordinates of the opposite corner (x,y,z):", parent=root)
+    box_corner1 = tuple(map(int, box_corner1.split(',')))
+    box_corner2 = tuple(map(int, box_corner2.split(',')))
+    points = []
+    for i in range(n):
+        point = simpledialog.askstring("Input", f"Enter the coordinates of point {i+1} (x,y,z):", parent=root)
+        points.append(tuple(map(int, point.split(','))))
+    
+    # Clear the canvas before drawing new balloons
+    canvas.delete("all")
+    draw_3d_box()
+
+    out_of_bounds_points = draw_balloons(points, box_corner1, box_corner2)
+    remaining_vol = simulate_balloons(points, box_corner1, box_corner2)
+    result_text = f"Remaining volume: {remaining_vol} cubic units"
+    if out_of_bounds_points:
+        result_text += f"\nPoints outside the box: {out_of_bounds_points}"
+    result_label.config(text=result_text, font=("Helvetica", 20, "bold"), bg='white', fg='#333')
+    
+    # Show the restart button after displaying the result
+    show_restart_button()
+
+# Create and place input button
+input_button = ttk.Button(box_frame, text="Give the Input Data", command=get_input, style="Input.TButton")
+input_button.grid(row=0, column=1, padx=20, pady=20)
+
+# Create result label
+result_label = tk.Label(box_frame, text="", font=("Helvetica", 20, "bold"), bg='white', fg='#333')
+result_label.grid(row=1, column=1, padx=20, pady=20)
+
+# Create restart button
+def restart_game():
+    stop_music()
+    play_restart_music()
+    box_frame.pack_forget()
+    start_frame.pack(expand=True, fill='both')
+
+restart_button = ttk.Button(box_frame, text="Restart Game", command=restart_game, style="Restart.TButton")
+def show_restart_button():
+    print("Showing restart button")  # Debugging print statement
+    restart_button.grid(row=2, column=1, padx=20, pady=20)
+
+# Create mute/unmute button
+mute_button = ttk.Button(box_frame, text="Mute Music", command=toggle_music, style="Restart.TButton")
+mute_button.place(relx=1, rely=1, anchor='se', width=100, height=30)
+style.configure("Mute.TButton", foreground="black")
+mute_button.configure(style="Mute.TButton")
+
+# Update background images when window is resized
+root.bind('<Configure>', lambda event: update_backgrounds())
+
+root.mainloop()
+
