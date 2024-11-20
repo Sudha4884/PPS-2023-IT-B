@@ -1,0 +1,663 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+class Medication {
+    private String name;
+    private String id;
+    private double price;
+    private int stock;
+    private double rating;  // Store the average rating
+
+    public Medication(String name, String id, double price, int stock) {
+        this.name = name;
+        this.id = id;
+        this.price = price;
+        this.stock = stock;
+        this.rating = -1; // Unrated initially
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void updateStock(int amount) {
+        this.stock += amount;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+    @Override
+    public String toString() {
+        return "Medication{" +
+                "name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                ", price=" + price +
+                ", stock=" + stock +
+                ", rating=" + (rating == -1 ? "No rating yet" : rating) +
+                '}';
+    }
+}
+
+class Order {
+    private Medication medication;
+    private int quantity;
+    private double totalCost;
+    private String address;  // Store the address for the order
+    private boolean isCanceled;  // Flag to track if the order is canceled
+
+    public Order(Medication medication, int quantity) {
+        this.medication = medication;
+        this.quantity = quantity;
+        this.totalCost = medication.getPrice() * quantity;
+        this.address = ""; // Initialize address as empty
+        this.isCanceled = false;  // Orders are not canceled initially
+    }
+
+    public Medication getMedication() {
+        return medication;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public double getTotalCost() {
+        return totalCost;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public boolean isCanceled() {
+        return isCanceled;
+    }
+
+    public void cancel() {
+        this.isCanceled = true;
+        this.medication.updateStock(quantity);  // Restores the stock when canceled
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "medication=" + medication.getName() +
+                ", quantity=" + quantity +
+                ", totalCost=$" + totalCost +
+                ", deliveryAddress='" + address + '\'' +
+                ", canceled=" + isCanceled +
+                '}';
+    }
+}
+
+class PharmacyManagementSystem {
+    private List<Medication> medications;
+    private List<Order> orders;  // List to store orders placed by the user
+
+    public PharmacyManagementSystem() {
+        medications = new ArrayList<>();
+        orders = new ArrayList<>();
+    }
+
+    public void addMedication(String name, String id, double price, int stock) {
+        medications.add(new Medication(name, id, price, stock));
+        System.out.println("Medication added: " + name);
+    }
+
+    public void updateStock(String id, int amount) {
+        for (Medication medication : medications) {
+            if (medication.getId().equals(id)) {
+                medication.updateStock(amount);
+                System.out.println("Stock updated for " + medication.getName() + ": " + medication.getStock());
+                return;
+            }
+        }
+        System.out.println("Medication not found.");
+    }
+
+    public void displayMedications() {
+        System.out.println("Current Medications:");
+        for (Medication medication : medications) {
+            System.out.println(medication);
+        }
+    }
+
+    public void findMedication(String id) {
+        for (Medication medication : medications) {
+            if (medication.getId().equals(id)) {
+                System.out.println("Medication found: " + medication);
+                return;
+            }
+        }
+        System.out.println("Medication not found.");
+    }
+
+    public void orderMedication(String id, int quantity, Scanner scanner) {
+        for (Medication medication : medications) {
+            if (medication.getId().equals(id)) {
+                if (medication.getStock() >= quantity) {
+                    medication.updateStock(-quantity);
+                    double totalCost = medication.getPrice() * quantity;
+                    System.out.println("Order placed for " + quantity + " of " + medication.getName() + ". Remaining stock: " + medication.getStock());
+                    System.out.println("Total cost of the order: $" + totalCost);
+
+                    // Create and add the order to the list
+                    Order newOrder = new Order(medication, quantity);
+                    orders.add(newOrder);
+
+                    // Ask for the delivery address
+                    System.out.print("Please enter your delivery address: ");
+                    scanner.nextLine(); // Consume newline
+                    String address = scanner.nextLine();
+                    newOrder.setAddress(address);
+
+                    // Ask for the rating
+                    System.out.print("Please rate this medication out of 5: ");
+                    double rating = scanner.nextDouble();
+                    if (rating >= 1 && rating <= 5) {
+                        medication.setRating(rating);
+                        System.out.println("Thank you for your feedback! Rating updated.");
+                    } else {
+                        System.out.println("Invalid rating. Please provide a rating between 1 and 5.");
+                    }
+                } else {
+                    System.out.println("Not enough stock available.");
+                }
+                return;
+            }
+        }
+        System.out.println("Medication not found.");
+    }
+
+    // Method to display orders placed
+    public void displayOrders() {
+        if (orders.isEmpty()) {
+            System.out.println("No orders have been placed yet.");
+        } else {
+            System.out.println("Orders placed:");
+            for (Order order : orders) {
+                if (!order.isCanceled()) {  // Only display non-canceled orders
+                    System.out.println(order);
+                }
+            }
+        }
+    }
+
+    // Method to cancel an order
+    public void cancelOrder(Scanner scanner) {
+        if (orders.isEmpty()) {
+            System.out.println("No orders to cancel.");
+            return;
+        }
+
+        System.out.println("List of placed orders:");
+        // List only non-canceled orders
+        List<Order> activeOrders = new ArrayList<>();
+        for (int i = 0; i < orders.size(); i++) {
+            Order order = orders.get(i);
+            if (!order.isCanceled()) {
+                activeOrders.add(order);
+                System.out.println((activeOrders.size()) + ". " + order);
+            }
+        }
+
+        if (activeOrders.isEmpty()) {
+            System.out.println("No active orders to cancel.");
+            return;
+        }
+
+        System.out.print("Enter the order number to cancel: ");
+        int orderNumber = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+
+        if (orderNumber > 0 && orderNumber <= activeOrders.size()) {
+            Order orderToCancel = activeOrders.get(orderNumber - 1);
+            orderToCancel.cancel();
+            orders.remove(orderToCancel);  // Remove the canceled order from the list
+            System.out.println("Order canceled successfully. Stock has been restored.");
+        } else {
+            System.out.println("Invalid order number.");
+        }
+    }
+}
+
+class User {
+    private String username;
+    private String password;
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+}
+
+public class PharmacyManagement {
+
+    private static List<User> users = new ArrayList<>();
+    private static User currentUser = null;
+
+    // Login method
+    public static boolean login(String username, String password) {
+        for (User user : users) {
+            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                currentUser = user;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Register method
+    public static void register(String username, String password) {
+        users.add(new User(username, password));
+        System.out.println("Registration successful!");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        PharmacyManagementSystem pms = new PharmacyManagementSystem();
+
+        // This loop will handle login or register.
+        while (currentUser == null) {
+            System.out.println("1. Login\n2. Register");
+            System.out.print("Choose an option: ");
+            int option = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            if (option == 1) {
+                // Login
+                System.out.print("Enter username: ");
+                String username = scanner.nextLine();
+                System.out.print("Enter password: ");
+                String password = scanner.nextLine();
+                if (login(username, password)) {
+                    System.out.println("Login successful!");
+                    break; // Exit the login/register loop
+                } else {
+                    System.out.println("Invalid username or password. Please try again.");
+                }
+            } else if (option == 2) {
+                // Register
+                System.out.print("Enter username: ");
+                String username = scanner.nextLine();
+                System.out.print("Enter password: ");
+                String password = scanner.nextLine();
+                register(username, password);
+                System.out.println("Please login with your new credentials.");
+            } else {
+                System.out.println("Invalid option. Please try again.");
+            }
+        }
+
+        // Menu for the logged-in user
+        while (true) {
+            System.out.println("\n1. Add Medication\n2. Update Stock\n3. Display Medications\n4. Find Medication\n5. Order Medication\n6. Display Orders\n7. Cancel Order\n8. Exit");
+            System.out.print("Choose an option: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            switch (choice) {
+                case 1:
+                    // Add new medication using user input
+                    System.out.print("Enter medication name: ");
+                    String name = scanner.nextLine();
+                    System.out.print("Enter medication ID: ");
+                    String id = scanner.nextLine();
+                    System.out.print("Enter medication price: ");
+                    double price = scanner.nextDouble();
+                    System.out.print("Enter initial stock: ");
+                    int stock = scanner.nextInt();
+                    pms.addMedication(name, id, price, stock);
+                    break;
+                case 2:
+                    // Update stock of an existing medication
+                    System.out.print("Enter medication ID to update stock: ");
+                    String medId = scanner.nextLine();
+                    System.out.print("Enter amount to update stock (use negative for reduction): ");
+                    int amount = scanner.nextInt();
+                    pms.updateStock(medId, amount);
+                    break;
+                case 3:
+                    // Display all medications
+                    pms.displayMedications();
+                    break;
+                case 4:
+                    // Find a medication by ID
+                    System.out.print("Enter medication ID to find: ");
+                    String searchId = scanner.nextLine();
+                    pms.findMedication(searchId);
+                    break;
+                case 5:
+                    // Order medication
+                    System.out.print("Enter medication ID to order: ");
+                    String orderId = scanner.nextLine();
+                    System.out.print("Enter quantity to order: ");
+                    int quantity = scanner.nextInt();
+                    pms.orderMedication(orderId, quantity, scanner);
+                    break;
+                case 6:
+                    // Display orders placed
+                    pms.displayOrders();
+                    break;
+                case 7:
+                    // Cancel an order
+                    pms.cancelOrder(scanner);
+                    break;
+                case 8:
+                    // Exit the program
+                    System.out.println("Exiting...");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Invalid choice, please try again.");
+            }
+        }
+    }
+}import time
+import pygame
+import numpy as np
+
+# Constants for colors
+COLOR_BG = (10, 10, 10)
+COLOR_GRID = (40, 40, 40)
+COLOR_DIE_NEXT = (0, 255, 0)  # Green for cells that will die
+COLOR_ALIVE_NEXT = (0,0,225)  # Blue for cells that will come to life
+BUTTON_COLOR = (54, 69, 79, 128)  # Blue for buttons
+BUTTON_TEXT_COLOR = (255, 255, 255)  # White for button text
+
+# Initialize Pygame mixer for sound
+pygame.mixer.init()
+
+# Paths for sound files
+sound_effect_path = "C:\\Users\\Madha Trust\\Downloads\\WhatsApp Audio 2024-06-02 at 1.17.47 PM (1).mp3"
+background_music_path ="C:\\Users\\Madha Trust\\Downloads\\WhatsApp Audio 2024-06-02 at 1.17.47 PM.mp3"
+
+# Load the background music and sound effect
+try:
+    pygame.mixer.music.load(background_music_path)  # Background music
+    sound_effect = pygame.mixer.Sound("C:\\Users\\Madha Trust\\Downloads\\WhatsApp Audio 2024-06-02 at 1.17.47 PM (1).mp3")  # Sound effect for cell change
+except pygame.error as e:
+    print(f"Error loading audio files: {e}")
+
+# Function to update the state of the cells
+def update(screen, cells, size, with_progress=False):
+    updated_cells = np.zeros((cells.shape[0], cells.shape[1]))  # Initialize updated cells array
+    cell_changed = False  # Flag to track if any cell changed state
+
+    # Iterate through each cell
+    for row, col in np.ndindex(cells.shape):
+        alive = np.sum(cells[row - 1:row + 2, col - 1:col + 2]) - cells[row, col]  # Count alive neighbors
+        color = COLOR_BG if cells[row, col] == 0 else COLOR_ALIVE_NEXT  # Determine cell color
+
+        # Apply Conway's Game of Life rules
+        if cells[row, col] == 1:  # Cell is alive
+            if alive < 2 or alive > 3:
+                if with_progress:
+                    color = COLOR_DIE_NEXT
+                cell_changed = True
+            elif 2 <= alive <= 3:
+                updated_cells[row, col] = 1
+                if with_progress:
+                    color = COLOR_ALIVE_NEXT
+        else:  # Cell is dead
+            if alive == 3:
+                updated_cells[row, col] = 1
+                if with_progress:
+                    color = COLOR_ALIVE_NEXT
+                cell_changed = True
+
+        # Draw the cell on the screen
+        pygame.draw.rect(screen, color, (col * size, row * size, size - 1, size - 1))
+
+    if cell_changed:
+        sound_effect.play()  # Play the sound effect if any cell state changed
+
+    return updated_cells, cell_changed
+
+# Function to draw a rectangular button
+def draw_rect_button(screen, text, center, font, button_color, width, height, align='center'):
+    text_surf = font.render(text, True, BUTTON_TEXT_COLOR)  # Render the text
+    if align == 'center':
+        text_rect = text_surf.get_rect(center=center)  # Center-align the text
+        button_rect = pygame.Rect(center[0] - width // 2, center[1] - height // 2, width, height)  # Define the button rectangle
+    elif align == 'right':
+        text_rect = text_surf.get_rect(midright=center)  # Right-align the text
+        button_rect = pygame.Rect(center[0] - width, center[1] - height // 2, width, height)  # Define the button rectangle
+    else:
+        raise ValueError("Unsupported alignment: choose 'center' or 'right'")  # Error for unsupported alignment
+    pygame.draw.rect(screen, button_color, button_rect)  # Draw the button
+    screen.blit(text_surf, text_rect)  # Blit the text on the button
+    return button_rect  # Return the button rectangle
+
+# Function to display instructions
+def show_instructions(screen, instructions_background_image):
+    screen.blit(instructions_background_image, (0, 0))  # Display the background image
+    font = pygame.font.SysFont(None, 40)  # Set the font for the instructions
+    instructions = [
+        "                                                  INSTRUCTIONS                                          ",
+        "",
+        "          1. Click 'Start' to begin the game.",
+        "          2. Click on cells to toggle their state between alive and dead.",
+        "          3. Press the spacebar to start or pause the simulation.",
+        "          4.'About' provides information about the game.",
+        "          5.'Exit' will close the game."
+    ]
+
+    # Render and display each instruction line
+    for i, line in enumerate(instructions):
+        text = font.render(line, True, (225, 225, 225))
+        screen.blit(text, (50, 100 + i * 50))
+
+    screen_width, screen_height = screen.get_size()  # Get screen size
+    back_text_rect = draw_rect_button(screen, "Back", (screen_width - 10, screen_height - 20), font, BUTTON_COLOR, 60, 40, align='right')  # Draw "Back" button
+    pygame.display.update()  # Update the display
+
+    # Event loop to handle interactions
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:  # Quit event
+                pygame.quit()
+                return False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:  # Escape key to quit
+                    pygame.quit()
+                    return False
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if back_text_rect.collidepoint(event.pos):  # Back button click
+                    return True
+
+# Function to display the "About" section
+def show_about(screen, about_background_image):
+    screen.blit(about_background_image, (0, 0))  # Display the background image
+    font = pygame.font.SysFont(None, 38)  # Set the font for the "About" section
+    about_text = [
+        "CONWAY'S GAME OF LIFE",
+        "","A cellular automaton devised by the British mathematician John Horton Conway in 1970.",
+        "Rules:",
+        "● If the cell is alive, then it stays alive if it has either 2 or 3 live neighbors.",
+        "● If the cell is dead, then it springs to life only in the case that it has 3 live neighbors.",
+        "● There should be no initial pattern for which there is a simple proof that the population can" ,"grow without limit.",
+        "● There should be initial patterns that apparently do grow without limit.",
+        
+    ]
+
+    # Render and display each line of the "About" text
+    for i, line in enumerate(about_text):
+        text = font.render(line, True, (255, 255, 255))
+        screen.blit(text, (50, 100 + i * 50))
+
+    screen_width, screen_height = screen.get_size()  # Get screen size
+    back_text_rect = draw_rect_button(screen, "Back", (screen_width - 10, screen_height - 10), font, BUTTON_COLOR, 80, 40, align='right')  # Draw "Back" button
+    pygame.display.update()  # Update the display
+
+    # Event loop to handle interactions
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:  # Quit event
+                pygame.quit()
+                return False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:  # Escape key to quit
+                    pygame.quit()
+                    return False
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if back_text_rect.collidepoint(event.pos):  # Back button click
+                    return True
+
+# Function to display the main menu
+def show_main_menu(screen, screen_width, screen_height, main_menu_background_image):
+    while True:
+        screen.blit(main_menu_background_image, (0, 0))  # Display the background image
+        font = pygame.font.SysFont(None, 50)  # Set the font for the main menu
+        texts = ["Start Game", "Instructions", "About", "Exit"]  # Main menu options
+
+        button_width, button_height = 200, 60  # Button dimensions
+        button_spacing = 1.5 * button_width  # Spacing between buttons
+
+        button_rects = []
+        for i, text in enumerate(texts):
+            center_x = (screen_width // 3) - button_spacing + i * button_spacing
+            center_y = screen_height - 100  # Position at the bottom of the window
+            button_rect = draw_rect_button(screen, text, (center_x, center_y), font, BUTTON_COLOR, button_width, button_height)  # Draw each button
+            button_rects.append(button_rect)
+
+        pygame.display.update()  # Update the display
+
+        # Event loop to handle interactions
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:  # Quit event
+                pygame.quit()
+                return False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:  # Escape key to quit
+                    pygame.quit()
+                    return False
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if button_rects[0].collidepoint(event.pos):  # "Start Game" button click
+                    pygame.mixer.music.play(loops=-1)  # Start playing background music
+                    return "start_game"
+                elif button_rects[1].collidepoint(event.pos):  # "Instructions" button click
+                    pygame.mixer.music.play(loops=-1)  # Start playing background music
+                    return "instructions"
+                elif button_rects[2].collidepoint(event.pos):  # "About" button click
+                    pygame.mixer.music.play(loops=-1)  # Start playing background music
+                    return "about"
+                elif button_rects[3].collidepoint(event.pos):  # "Exit" button click
+                    pygame.quit()
+                    return False
+
+# Main function to run the game
+def main():
+    pygame.init()  # Initialize Pygame
+
+    info = pygame.display.Info()  # Get display information
+    screen_width, screen_height = info.current_w, info.current_h  # Get screen dimensions
+
+    screen = pygame.display.set_mode((screen_width, screen_height), pygame.FULLSCREEN)  # Set the display mode
+    pygame.display.set_caption("Conway's Game of Life")  # Set the window caption
+
+    # Load the background images
+    try:
+        main_menu_background_image = pygame.image.load("C:\\Users\\Madha Trust\\Downloads\WhatsApp Image 2024-05-27 at 2.47.45 PM (2).jpeg")
+        instructions_background_image = pygame.image.load("C:\\Users\Madha Trust\\Downloads\\WhatsApp Image 2024-06-02 at 5.06.13 PM.jpeg")
+        about_background_image = pygame.image.load("C:\\Users\\Madha Trust\\Downloads\\WhatsApp Image 2024-06-02 at 5.07.46 PM.jpeg")
+    except pygame.error as e:
+        print(f"Error loading images: {e}")
+        return
+
+    # Scale the background images to fit the screen
+    main_menu_background_image = pygame.transform.scale(main_menu_background_image, (screen_width, screen_height))
+    instructions_background_image = pygame.transform.scale(instructions_background_image, (screen_width, screen_height))
+    about_background_image = pygame.transform.scale(about_background_image, (screen_width, screen_height))
+
+    font = pygame.font.SysFont(None, 50)  # Set the font
+
+    while True:
+        action = show_main_menu(screen, screen_width, screen_height, main_menu_background_image)  # Show the main menu
+        if action == "start_game":
+            screen.fill(COLOR_GRID)  # Fill the screen with the grid color
+            cell_size = 40  # Set the cell size
+            grid_width = screen_width // cell_size  # Calculate the grid width
+            grid_height = screen_height // cell_size  # Calculate the grid height
+
+            cells = np.zeros((grid_height, grid_width))  # Initialize the cells array
+            screen.fill(COLOR_GRID)  # Fill the screen with the grid color
+            update(screen, cells, cell_size)  # Update the screen with the initial cell states
+
+            pygame.display.flip()  # Update the display
+
+            running = False  # Flag to indicate if the simulation is running
+            while True:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:  # Quit event
+                        pygame.quit()
+                        return
+                    elif event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_SPACE:  # Spacebar to start/pause the simulation
+                            running = not running
+                            if running:
+                                print("Starting")
+                            else:
+                                print("Pausing")
+                        elif event.key == pygame.K_ESCAPE:  # Escape key to quit
+                            pygame.quit()
+                            return
+                    elif event.type == pygame.MOUSEBUTTONDOWN:
+                        pos = pygame.mouse.get_pos()  # Get the mouse position
+                        row = pos[1] // cell_size  # Calculate the row index
+                        col = pos[0] // cell_size  # Calculate the column index
+                        cells[row, col] = 1 - cells[row, col]  # Toggle the cell state
+                        update(screen, cells, cell_size)  # Update the screen with the new cell state
+                        pygame.display.flip()  # Update the display
+
+                if running:
+                    cells, cell_changed = update(screen, cells, cell_size, with_progress=True)  # Update the cell states
+                    pygame.display.flip()  # Update the display
+                    if cell_changed:
+                        sound_effect.play()  # Play the sound effect if any cell state changed
+                    time.sleep(0.1)  # Delay to control the simulation speed
+
+        elif action == "instructions":
+            if not show_instructions(screen, instructions_background_image):  # Show instructions
+                break
+        elif action == "about":
+            if not show_about(screen, about_background_image):  # Show "About" section
+                break
+        else:
+            break
+
+    pygame.quit()  # Quit Pygame
+
+if __name__ == "__main__":
+    main()
