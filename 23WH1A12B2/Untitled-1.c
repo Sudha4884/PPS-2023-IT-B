@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Function to accept player details and store in a file according to the selected game
 void acceptPlayerDetails(char game[]) {
     FILE *file;
     char playerName[50], age[5], flatNo[10], mobile[15];
@@ -19,7 +18,7 @@ void acceptPlayerDetails(char game[]) {
     printf("\nEnter player's mobile number: \n");
     scanf("%s", mobile);
     
-    file = fopen(strcat(game, ".txt"), "a"); // File created/stored with game name
+    file = fopen(strcat(game, ".txt"), "a");
     if (file == NULL) {
         printf("Error creating file.");
         exit(1);
@@ -29,7 +28,6 @@ void acceptPlayerDetails(char game[]) {
     fclose(file);
 }
 
-// Function to display entries for a specific game
 void displayEntries(char game[]) {
     FILE *file;
     char line[100];
